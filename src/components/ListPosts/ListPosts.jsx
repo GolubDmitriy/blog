@@ -1,5 +1,5 @@
 import React from 'react';
-import Post from '../Post/Post';
+import ListItemPost from '../ListItemPost/ListItemPost';
 import ApiServices from '../../services/apiServices'
 
 import './ListPosts.css';
@@ -32,7 +32,7 @@ export default class ListsPosts extends React.Component {
         const elements = posts.map(post => {
             return (
                 <li key={ post.id }>
-                    <Post 
+                    <ListItemPost 
                         title={ post.title }
                         text={ post.body }
                     />

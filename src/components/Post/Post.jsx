@@ -4,10 +4,16 @@ import './Post.css';
 
 const Post = ({title, text}) => {
     return (
-        <div>
-            <h3>{ title }</h3>
-            <div className="body-post">{ text }</div>
-            <div className="menu-bar">
+        <div className="post-mini">
+            <div className="post-mini-title">
+                <h3>
+                    { title }
+                </h3>
+            </div>
+            <div className="post-mini-body">
+                { text }
+            </div>
+            <div className="post-mini-menu-bar">
                 <span>Like</span>
                 <span>Dislike</span>
                 <span>About</span>

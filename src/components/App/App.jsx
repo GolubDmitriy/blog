@@ -13,7 +13,9 @@ const App = () => {
             <Header />
             <Router>
                 <Route path="/posts" component={ ListPosts } />
-                <Route path="/post" component={ Post } />
+                <Route path="/post/:id" render={({match}) => {
+                    return <Post id={match.params.id}/>
+                }} />
             </Router>
         </div>
     )

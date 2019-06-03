@@ -32,7 +32,8 @@ export default class ListsPosts extends React.Component {
         const elements = posts.map(post => {
             return (
                 <li key={ post.id }>
-                    <ListItemPost 
+                    <ListItemPost
+                        idPost = { post.id } 
                         title={ post.title }
                         text={ post.body }
                     />

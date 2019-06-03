@@ -1,13 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import './ListItemPost.css';
 
-const Post = ({title, text}) => {
+const Post = ({title, text, idPost}) => {
     return (
         <div className="post-mini">
             <div className="post-mini-title">
                 <h3>
-                    { title }
+                    <Link to={"/post/" + idPost}>
+                        { title }
+                    </Link>
                 </h3>
             </div>
             <div className="post-mini-body">

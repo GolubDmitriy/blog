@@ -2,9 +2,9 @@ import React from 'react';
 
 import './Post.css'
 
-const Post = () => {
+const Post = ({id}) => {
     return (
-        <h1>Post</h1>
+        <h1>Post {id}</h1>
     )
 }
 

@@ -6,7 +6,7 @@ import './App.css';
 
 const App = () => {
     return (
-        <div class="main-page">
+        <div className="main-page">
             <Header />
             <ListPosts />
         </div>

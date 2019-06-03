@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from '../Header/Header';
 import ListPosts from '../ListPosts/ListPosts';
+import Post from '../Post/Post';
+
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 
 import './App.css';
@@ -11,6 +13,7 @@ const App = () => {
             <Header />
             <Router>
                 <Route path="/posts" component={ ListPosts } />
+                <Route path="/post" component={ Post } />
             </Router>
         </div>
     )

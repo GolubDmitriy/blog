@@ -1,3 +1,11 @@
-li:nth-child(even){
+li:nth-child(even) {
     background: LightGray;
+}
+
+li:nth-child(odd) {
+    background: silver;
+}
+
+li {
+    margin-bottom: 5px;
 }

@@ -1,9 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { deletePost } from '../../actions/actions';
 
 import './ListItemPost.css';
 
-const Post = ({title, text, idPost}) => {
+const ListItemPost = ({title, text, idPost, deletePost}) => {
     return (
         <div className="post-mini">
             <div className="post-mini-title">
@@ -21,9 +24,18 @@ const Post = ({title, text, idPost}) => {
                 <span>Dislike</span>
                 <span>About</span>
                 <span>Comments</span>
+                <span onClick={() => deletePost(idPost)}>Delete</span>
             </div>
         </div>
     )
 };
 
-export default Post;
+const mapDispatchToProps = dispatch => {
+    return {
+        deletePost: idPost => {
+            dispatch(deletePost(idPost))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ListItemPost);

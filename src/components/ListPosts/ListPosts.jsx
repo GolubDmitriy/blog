@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import ListItemPost from '../ListItemPost/ListItemPost';
 import ApiServices from '../../services/apiServices';
 
+import { postsLoaded } from '../../actions/actions';
+
 import './ListPosts.css';
 
 class ListsPosts extends React.Component {
@@ -12,7 +14,7 @@ class ListsPosts extends React.Component {
         const apiServices = new ApiServices();
         apiServices.getAllPosts()
             .then(data => {
-                this.props.booksLoaded(data)
+                this.props.postsLoaded(data)
             });
     }
 
@@ -40,18 +42,15 @@ class ListsPosts extends React.Component {
 }
 
 const mapStateToProps = ({ posts }) => {
-    return { posts }
+    return  { posts }; 
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
-        booksLoaded: (newPosts) => {
-            dispatch({
-                type: 'POSTS_LOADED',
-                payload: newPosts
-            });
+        postsLoaded: newPosts => {
+            dispatch(postsLoaded(newPosts))
         }
-    };
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListsPosts);

@@ -1,11 +1,13 @@
-const initialState = [];
+const initialState = {
+    posts: []
+};
 
 const reducer = (state=initialState, action) => {
 
     switch (action.type) {
         case 'POSTS_LOADED':
             return {
-                books: action.payload
+                posts: action.payload
             };
         default:
             return state;

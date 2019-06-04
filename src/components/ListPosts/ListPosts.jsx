@@ -1,33 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import ListItemPost from '../ListItemPost/ListItemPost';
-import ApiServices from '../../services/apiServices'
+import ApiServices from '../../services/apiServices';
 
 import './ListPosts.css';
 
-export default class ListsPosts extends React.Component {
+class ListsPosts extends React.Component {
 
-    apiServices = new ApiServices();
-    
-    state = {
-        posts: []
-    }
-
-    updatePosts = () => {
-        this.apiServices.getAllPosts().then(data => {
-            this.setState({
-                posts: data
+    componentDidMount() {
+        const apiServices = new ApiServices();
+        apiServices.getAllPosts()
+            .then(data => {
+                this.props.booksLoaded(data)
             });
-        });
-    }
-
-    constructor() {
-        super();
-        console.log(this.state);
-        this.updatePosts();
     }
 
     render() {
-        const { posts }  = this.state;
+        const { posts }  = this.props;
 
         const elements = posts.map(post => {
             return (
@@ -48,3 +38,20 @@ export default class ListsPosts extends React.Component {
         )
     }
 }
+
+const mapStateToProps = ({ posts }) => {
+    return { posts }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        booksLoaded: (newPosts) => {
+            dispatch({
+                type: 'POSTS_LOADED',
+                payload: newPosts
+            });
+        }
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListsPosts);

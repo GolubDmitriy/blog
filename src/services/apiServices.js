@@ -27,4 +27,9 @@ export default class ApiService {
         }
     }
 
+    async getCommentsByPostId(postId) {
+        const comments = await this.getAllComments();
+        return comments.filter(comment => comment.postId === Number(postId));
+    }
+
 }

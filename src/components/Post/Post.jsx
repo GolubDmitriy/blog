@@ -17,20 +17,16 @@ class Post extends React.Component {
             .then(post => {
                 this.props.postLoaded(post)
             });
-        apiServices.getCommentsByPostId(this.props.id)
-            .then(comments => {
-                console.log(comments)
-            })
     }
     
     render() {
-        const { post } = this.props
+        const { post, id } = this.props
 
         return (
             <div>
                 <h1>{ post.title }</h1>
                 <p>{ post.body }</p>
-                <ListComments />
+                <ListComments postId={ id } />
             </div>
         )
     }

@@ -10,8 +10,8 @@ import './App.css';
 const App = () => {
     return (
         <div className="main-page">
-            <Header />
             <Router>
+            <Header />
                 <Route path="/posts" component={ ListPosts } />
                 <Route path="/post/:id" render={({match}) => {
                     return <Post id={match.params.id}/>

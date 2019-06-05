@@ -1,6 +1,7 @@
 const initialState = {
     posts: [],
-    post: {}
+    post: {},
+    comments: []
 };
 
 const reducer = (state=initialState, action) => {
@@ -20,6 +21,11 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 post: action.payload
+            };
+        case 'COMMENTS_LOADED':
+            return {
+                ...state,
+                comments: action.payload
             };
         default:
             return state;

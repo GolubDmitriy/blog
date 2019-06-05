@@ -6,6 +6,8 @@ import { commentsLoaded } from '../../actions/actions'
 
 import ApiServices from '../../services/apiServices';
 
+import Comment from '../Comment/Comment';
+
 class ListComments extends React.Component {
     
     componentDidMount() {
@@ -18,15 +20,23 @@ class ListComments extends React.Component {
     
     render() {
 
-        const { postId, comments } = this.props;
-        console.log(comments);
+        const { comments } = this.props;
+
+        const commentsList = comments.map(comment => {
+            return (
+                <li key={ comment.id }>
+                    <Comment 
+                        name={ comment.name }
+                        email={ comment.email }
+                        body={ comment.body }
+                    />
+                </li>
+            )
+        })
 
         return (
             <ul>
-                <li>{ postId }</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
+                { commentsList }
             </ul>
         )
     }

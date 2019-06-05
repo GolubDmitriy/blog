@@ -12,7 +12,15 @@ const deletePost = idPost => {
     }
 }
 
+const postLoaded = (newPost) => {
+    return {
+        type: 'POST_LOADED',
+        payload: newPost
+    }
+}
+
 export {
     postsLoaded,
-    deletePost
+    deletePost,
+    postLoaded
 }

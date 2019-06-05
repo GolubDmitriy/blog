@@ -10,16 +10,24 @@ import './ListPosts.css';
 
 class ListsPosts extends React.Component {
 
-    componentDidMount() {
-        const apiServices = new ApiServices();
-        apiServices.getAllPosts()
-            .then(data => {
-                this.props.postsLoaded(data)
-            });
-    }
+    // componentDidMount() {
+    //     const apiServices = new ApiServices();
+    //     apiServices.getAllPosts()
+    //         .then(data => {
+    //             this.props.postsLoaded(data)
+    //         });
+    // }
 
     render() {
         const { posts }  = this.props;
+
+        if (posts.length === 0) {
+            const apiServices = new ApiServices();
+            apiServices.getAllPosts()
+                .then(data => {
+                    this.props.postsLoaded(data)
+                });
+        }
 
         const elements = posts.map(post => {
             return (

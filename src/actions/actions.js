@@ -19,8 +19,16 @@ const postLoaded = (newPost) => {
     }
 }
 
+const commentsLoaded = comments => {
+    return {
+        type: 'COMMENTS_LOADED',
+        payload: comments
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
-    postLoaded
+    postLoaded,
+    commentsLoaded
 }

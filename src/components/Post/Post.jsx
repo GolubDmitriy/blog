@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 
 import { postLoaded } from '../../actions/actions';
 
-import ApiServices from '../../services/apiServices'
+import ApiServices from '../../services/apiServices';
 
-import './Post.css'
+import ListComments from '../ListComments/ListComments';
+
+import './Post.css';
 
 class Post extends React.Component {
 
@@ -15,6 +17,10 @@ class Post extends React.Component {
             .then(post => {
                 this.props.postLoaded(post)
             });
+        apiServices.getCommentsByPostId(this.props.id)
+            .then(comments => {
+                console.log(comments)
+            })
     }
     
     render() {
@@ -24,6 +30,7 @@ class Post extends React.Component {
             <div>
                 <h1>{ post.title }</h1>
                 <p>{ post.body }</p>
+                <ListComments />
             </div>
         )
     }

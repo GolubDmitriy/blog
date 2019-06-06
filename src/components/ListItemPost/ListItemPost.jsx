@@ -2,11 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { deletePost } from '../../actions/actions';
+import { deletePost, setLike } from '../../actions/actions';
 
 import './ListItemPost.css';
 
-const ListItemPost = ({title, text, idPost, deletePost}) => {
+const ListItemPost = ({ title, text, idPost, deletePost, setLike, like }) => {
+    
+    const likeBtn = 
+        like[idPost] ? 
+        (<span>Like</span>) :
+        (<span onClick={() => setLike(idPost)}>Like!!!</span>)
+                                 
+    console.log(like)
+
     return (
         <div className="post-mini">
             <div className="post-mini-title">
@@ -20,7 +28,8 @@ const ListItemPost = ({title, text, idPost, deletePost}) => {
                 { text }
             </div>
             <div className="post-mini-menu-bar">
-                <span>Like</span>
+                {/* <span onClick={() => setLike(idPost)}>Like</span> */}
+                {likeBtn}
                 <span>Dislike</span>
                 <span>About</span>
                 <span>Comments</span>
@@ -30,12 +39,19 @@ const ListItemPost = ({title, text, idPost, deletePost}) => {
     )
 };
 
+const mapStateToProps = ({like}) => {
+    return {like}
+} 
+
 const mapDispatchToProps = dispatch => {
     return {
         deletePost: idPost => {
             dispatch(deletePost(idPost))
+        },
+        setLike: idPost => {
+            dispatch(setLike(idPost))
         }
     }
 }
 
-export default connect(null, mapDispatchToProps)(ListItemPost);
+export default connect(mapStateToProps, mapDispatchToProps)(ListItemPost);

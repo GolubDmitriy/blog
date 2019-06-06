@@ -12,31 +12,33 @@ import { postsLoaded } from '../../actions/actions';
 
 import './App.css';
 
-const App = ({ posts, postsLoaded }) => {
+class App extends React.Component {
 
-    if (posts.length === 0) {
+    componentDidMount() {
         const apiServices = new ApiServices();
         apiServices.getAllPosts()
             .then(data => {
-                postsLoaded(data)
+                this.props.postsLoaded(data)
             });
-    } 
+    }
 
-    return (
-        <div className="main-page">
-            <Router>
-            <Header />
-                <Route path="/posts" component={ ListPosts } />
-                <Route path="/post/:id" render={({match}) => {
-                    return <Post id={match.params.id} />
-                }} />
-                <Route path="/new-post" component={ NewPost } />
-                <Route path="/edit-post/:id" render={({match}) => {
-                    return <EditPost id={match.params.id} />
-                }} />
-            </Router>
-        </div>
-    )
+    render() {
+        return (
+            <div className="main-page">
+                <Router>
+                <Header />
+                    <Route path="/posts" component={ ListPosts } />
+                    <Route path="/post/:id" render={({match}) => {
+                        return <Post id={match.params.id} />
+                    }} />
+                    <Route path="/new-post" component={ NewPost } />
+                    <Route path="/edit-post/:id" render={({match}) => {
+                        return <EditPost id={match.params.id} />
+                    }} />
+                </Router>
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = ({ posts }) => {

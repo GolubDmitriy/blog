@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ApiServices from '../../services/apiServices';
-import { postsLoaded } from '../../actions/actions';
+import { postsLoaded, editPost } from '../../actions/actions';
 
 class EditPost extends React.Component {
 
@@ -23,15 +23,46 @@ class EditPost extends React.Component {
                 }) 
             });
     } 
+
+    changeValueTitle = event => {
+        this.setState({
+            valueTitle: event.target.value
+        })
+    }
+
+    changeValueBody = event => {
+        this.setState({
+            valueBody: event.target.value
+        })
+    }
     
+    sendEditPost = () => {
+        const post = {
+            title: this.state.valueTitle,
+            body: this.state.valueBody,
+            id: this.props.id,
+            userId: 1
+        }
+        this.props.editPost(post)
+    }
 
     render() {
 
         const editPost = (
             <div>
-                <input type="text" value={ this.state.valueTitle } />
-                <textarea cols="30" rows="10" value={ this.state.valueBody }></textarea>
-                <input type="button" value="Редактировать" />
+                <input 
+                    type="text" 
+                    value={ this.state.valueTitle }
+                    onChange={ this.changeValueTitle } />
+                <textarea 
+                    cols="30" 
+                    rows="10" 
+                    value={ this.state.valueBody }
+                    onChange={ this.changeValueBody } />
+                <input 
+                    type="button" 
+                    value="Редактировать"
+                    onClick={ this.sendEditPost } />
             </div>
         )
 
@@ -47,6 +78,9 @@ const mapDispatchToProps = dispatch => {
     return {
         postsLoaded: newPosts => {
             dispatch(postsLoaded(newPosts))
+        },
+        editPost: post => {
+            dispatch(editPost(post))
         }
     }
 }

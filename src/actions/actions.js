@@ -40,11 +40,19 @@ const editPost = post => {
     }
 }
 
+const setLike = idPost => {
+    return {
+        type: 'SET_LIKE',
+        payload: idPost
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
     postLoaded,
     commentsLoaded,
     addNewPost,
-    editPost
+    editPost,
+    setLike
 }

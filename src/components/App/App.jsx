@@ -15,11 +15,13 @@ import './App.css';
 class App extends React.Component {
 
     componentDidMount() {
-        const apiServices = new ApiServices();
-        apiServices.getAllPosts()
-            .then(data => {
-                this.props.postsLoaded(data)
-            });
+        if (this.props.posts.length === 0) {
+            const apiServices = new ApiServices();
+            apiServices.getAllPosts()
+                .then(data => {
+                    this.props.postsLoaded(data)
+                });
+        }
     }
 
     render() {

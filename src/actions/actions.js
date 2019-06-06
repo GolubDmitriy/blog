@@ -26,9 +26,17 @@ const commentsLoaded = comments => {
     }
 }
 
+const addNewPost = newPost => {
+    return {
+        type: 'ADD_NEW_POST',
+        payload: newPost
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
     postLoaded,
-    commentsLoaded
+    commentsLoaded,
+    addNewPost
 }

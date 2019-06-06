@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { addNewPost } from '../../actions/actions';
+
 class NewPost extends React.Component {
     
     state = {
@@ -10,7 +12,13 @@ class NewPost extends React.Component {
 
     sendNewPost = event => {
         event.preventDefault();
-        console.log(this.state.valueBody, this.state.valueTitle)
+        const newPost = {
+            title: this.state.valueTitle,
+            body: this.state.valueBody,
+            userId: 1,
+            id: 101
+        } 
+        this.props.addNewPost(newPost)
     }
 
     changeValueTitle = event => {
@@ -46,4 +54,12 @@ class NewPost extends React.Component {
     }
 }
 
-export default connect()(NewPost);
+const mapDispatchToProps = dispatch => {
+    return {
+        addNewPost: newPost => {
+            dispatch(addNewPost(newPost))
+        } 
+    }
+}
+
+export default connect(null, mapDispatchToProps)(NewPost);

@@ -7,6 +7,7 @@ import ListPosts from '../ListPosts/ListPosts';
 import Post from '../Post/Post';
 import ApiServices from '../../services/apiServices';
 import NewPost from '../NewPost/NewPost';
+import EditPost from '../EditPost/EditPost'
 import { postsLoaded } from '../../actions/actions';
 
 import './App.css';
@@ -27,9 +28,12 @@ const App = ({ posts, postsLoaded }) => {
             <Header />
                 <Route path="/posts" component={ ListPosts } />
                 <Route path="/post/:id" render={({match}) => {
-                    return <Post id={match.params.id}/>
+                    return <Post id={match.params.id} />
                 }} />
                 <Route path="/new-post" component={ NewPost } />
+                <Route path="/edit-post/:id" render={({match}) => {
+                    return <EditPost id={match.params.id} />
+                }} />
             </Router>
         </div>
     )

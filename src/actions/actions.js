@@ -33,10 +33,18 @@ const addNewPost = newPost => {
     }
 }
 
+const editPost = post => {
+    return {
+        type: 'EDIT_POST',
+        payload: post
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
     postLoaded,
     commentsLoaded,
-    addNewPost
+    addNewPost,
+    editPost
 }

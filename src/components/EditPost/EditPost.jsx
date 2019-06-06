@@ -12,16 +12,24 @@ class EditPost extends React.Component {
     }
 
     componentDidMount() {
-        const apiServices = new ApiServices();
-        apiServices.getAllPosts()
-            .then(data => {
-                this.props.postsLoaded(data);
-                const post = this.props.posts.filter(post => post.id === Number(this.props.id))[0];
-                this.setState({
-                    valueTitle: post.title,
-                    valueBody: post.body
-                }) 
-            });
+        if (this.props.posts.length === 0) {
+            const apiServices = new ApiServices();
+            apiServices.getAllPosts()
+                .then(data => {
+                    this.props.postsLoaded(data);
+                    const post = this.props.posts.filter(post => post.id === Number(this.props.id))[0];
+                    this.setState({
+                        valueTitle: post.title,
+                        valueBody: post.body
+                    }) 
+                });
+        } else {
+            const post = this.props.posts.filter(post => post.id === Number(this.props.id))[0];
+            this.setState({
+                valueTitle: post.title,
+                valueBody: post.body
+            }) 
+        }
     } 
 
     changeValueTitle = event => {

@@ -1,7 +1,8 @@
 const initialState = {
     posts: [],
     post: {},
-    comments: []
+    comments: [],
+    like: {}
 };
 
 const reducer = (state=initialState, action) => {
@@ -31,7 +32,6 @@ const reducer = (state=initialState, action) => {
             state.posts.push(action.payload)
             return state;
         case 'EDIT_POST':
-            console.log(action.payload)
             return {
                 ...state,
                 posts: state.posts.map(post => {
@@ -41,6 +41,9 @@ const reducer = (state=initialState, action) => {
                     return post;
                 })
             };
+        case 'SET_LIKE':
+            state.like[action.payload] = 1 
+            return state
         default:
             return state;
     }

@@ -1,26 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { postLoaded } from '../../actions/actions';
-
-import ApiServices from '../../services/apiServices';
-
 import ListComments from '../ListComments/ListComments';
 
 import './Post.css';
 
 class Post extends React.Component {
-
-    componentDidMount() {
-        const apiServices = new ApiServices();
-        apiServices.getPostById(this.props.id)
-            .then(post => {
-                this.props.postLoaded(post)
-            });
-    }
     
     render() {
-        const { post, id } = this.props
+
+        const { posts, id } = this.props;
+
+        const post = posts.filter(post => post.id === Number(id))[0];
 
         return (
             <div>
@@ -32,16 +23,8 @@ class Post extends React.Component {
     }
 }
 
-const mapStateToProps = ({ post }) => {
-    return  { post } 
+const mapStateToProps = ({ posts }) => {
+    return  { posts } 
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        postLoaded: newPost => {
-            dispatch(postLoaded(newPost))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Post);
+export default connect(mapStateToProps)(Post);

@@ -27,6 +27,9 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 comments: action.payload
             };
+        case 'ADD_NEW_POST':
+            state.posts.push(action.payload)
+            return state;
         default:
             return state;
     }

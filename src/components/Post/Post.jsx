@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import ListComments from '../ListComments/ListComments';
 
@@ -17,6 +18,7 @@ class Post extends React.Component {
             <div>
                 <h1>{ post.title }</h1>
                 <p>{ post.body }</p>
+                <Link to={"/edit-post/" + id}>Редактировать</Link>
                 <ListComments postId={ id } />
             </div>
         )

@@ -2,9 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ListItemPost from '../ListItemPost/ListItemPost';
-import ApiServices from '../../services/apiServices';
-
-import { postsLoaded } from '../../actions/actions';
 
 import './ListPosts.css';
 
@@ -19,15 +16,8 @@ class ListsPosts extends React.Component {
     // }
 
     render() {
-        const { posts }  = this.props;
 
-        if (posts.length === 0) {
-            const apiServices = new ApiServices();
-            apiServices.getAllPosts()
-                .then(data => {
-                    this.props.postsLoaded(data)
-                });
-        }
+        const { posts }  = this.props;
 
         const elements = posts.map(post => {
             return (
@@ -53,12 +43,4 @@ const mapStateToProps = ({ posts }) => {
     return  { posts }; 
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        postsLoaded: newPosts => {
-            dispatch(postsLoaded(newPosts))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListsPosts);
+export default connect(mapStateToProps)(ListsPosts);

@@ -36,7 +36,7 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 posts: state.posts.map(post => {
-                    if (post.id === Number(action.payload.id)) {
+                    if (Number(post.id) === Number(action.payload.id)) {
                         return action.payload;
                     }
                     return post;

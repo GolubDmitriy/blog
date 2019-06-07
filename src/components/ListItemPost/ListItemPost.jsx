@@ -13,8 +13,6 @@ const ListItemPost = ({ title, text, idPost, deletePost, setLike, like }) => {
         (<span>Like</span>) :
         (<span onClick={() => setLike(idPost)}>Like!!!</span>)
                                  
-    console.log(like)
-
     return (
         <div className="post-mini">
             <div className="post-mini-title">

@@ -9,19 +9,13 @@ import './ListPosts.css';
 
 class ListsPosts extends React.Component {
 
-    // componentDidMount() {
-    //     const apiServices = new ApiServices();
-    //     apiServices.getAllPosts()
-    //         .then(data => {
-    //             this.props.postsLoaded(data)
-    //         });
-    // }
-
     render() {
 
-        const { posts }  = this.props;
-        console.log(this.props.foundPosts)
-        const elements = posts.map(post => {
+        const { posts, foundPosts }  = this.props;
+
+        const resultPosts = foundPosts.length !== 0 ? foundPosts : posts;
+
+        const elements = resultPosts.map(post => {
             return (
                 <li key={ post.id }>
                     <ListItemPost

@@ -12,8 +12,8 @@ class Post extends React.Component {
 
         const { posts, id } = this.props;
 
-        const post = posts.filter(post => post.id === Number(id))[0];
-
+        const post = posts.filter(post => Number(post.id) === Number(id))[0];
+        
         return (
             <div>
                 <h1>{ post.title }</h1>

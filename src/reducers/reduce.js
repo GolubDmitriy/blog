@@ -4,7 +4,8 @@ const initialState = {
     comments: [],
     like: {},
     loadingPosts: true,
-    foundPosts: []
+    foundPosts: [],
+    lastId: 0
 };
 
 const reducer = (state=initialState, action) => {
@@ -13,7 +14,10 @@ const reducer = (state=initialState, action) => {
         case 'POSTS_LOADED':
             return {
                 ...state,
-                posts: action.payload
+                posts: action.payload,
+                lastId: action.payload.reduce((a, b) => {
+                    return (Number(a.id) > Number(b.id) ? Number(a.id) : Number(b.id))
+                })
             };
         case 'DELETE_POST':
             return {
@@ -31,8 +35,12 @@ const reducer = (state=initialState, action) => {
                 comments: action.payload
             };
         case 'ADD_NEW_POST':
-            state.posts.push(action.payload)
-            return state;
+            action.payload.id = ++state.lastId;
+            state.posts.push(action.payload);
+            return {
+                ...state,
+                lastId: state.lastId
+            }
         case 'EDIT_POST':
             return {
                 ...state,

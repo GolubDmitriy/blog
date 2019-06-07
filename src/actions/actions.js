@@ -47,6 +47,12 @@ const setLike = idPost => {
     }
 }
 
+const loadingPostsComplete = () => {
+    return {
+        type: 'LOADING_POSTS_COMPLETE'
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -54,5 +60,6 @@ export {
     commentsLoaded,
     addNewPost,
     editPost,
-    setLike
+    setLike,
+    loadingPostsComplete
 }

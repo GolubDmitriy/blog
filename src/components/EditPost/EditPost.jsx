@@ -17,14 +17,14 @@ class EditPost extends React.Component {
             apiServices.getAllPosts()
                 .then(data => {
                     this.props.postsLoaded(data);
-                    const post = this.props.posts.filter(post => post.id === Number(this.props.id))[0];
+                    const post = this.props.posts.filter(post => Number(post.id) === Number(this.props.id))[0];
                     this.setState({
                         valueTitle: post.title,
                         valueBody: post.body
                     }) 
                 });
         } else {
-            const post = this.props.posts.filter(post => post.id === Number(this.props.id))[0];
+            const post = this.props.posts.filter(post => Number(post.id) === Number(this.props.id))[0];
             this.setState({
                 valueTitle: post.title,
                 valueBody: post.body
@@ -51,7 +51,7 @@ class EditPost extends React.Component {
             id: this.props.id,
             userId: 1
         }
-        this.props.editPost(post)
+        this.props.editPost(post);
     }
 
     render() {

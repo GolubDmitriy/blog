@@ -8,18 +8,19 @@ import Post from '../Post/Post';
 import ApiServices from '../../services/apiServices';
 import NewPost from '../NewPost/NewPost';
 import EditPost from '../EditPost/EditPost'
-import { postsLoaded } from '../../actions/actions';
+import { postsLoaded, loadingPostsComplete } from '../../actions/actions';
 
 import './App.css';
 
 class App extends React.Component {
 
     componentDidMount() {
-        if (this.props.posts.length === 0) {
+        if (this.props.loadingPosts) {
             const apiServices = new ApiServices();
             apiServices.getAllPosts()
                 .then(data => {
-                    this.props.postsLoaded(data)
+                    this.props.postsLoaded(data);
+                    this.props.loadingPostsComplete();
                 });
         }
     }
@@ -43,14 +44,17 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = ({ posts }) => {
-    return  { posts }; 
+const mapStateToProps = ({ posts, loadingPosts }) => {
+    return  { posts, loadingPosts }; 
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         postsLoaded: newPosts => {
             dispatch(postsLoaded(newPosts))
+        },
+        loadingPostsComplete: () => {
+            dispatch(loadingPostsComplete())
         }
     }
 }

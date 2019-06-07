@@ -53,6 +53,13 @@ const loadingPostsComplete = () => {
     }
 }
 
+const searchPosts = textPosts => {
+    return {
+        type: 'SEARCH_POSTS',
+        payload: textPosts
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -61,5 +68,6 @@ export {
     addNewPost,
     editPost,
     setLike,
-    loadingPostsComplete
+    loadingPostsComplete,
+    searchPosts
 }

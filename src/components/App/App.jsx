@@ -8,7 +8,7 @@ import Post from '../Post/Post';
 import ApiServices from '../../services/apiServices';
 import NewPost from '../NewPost/NewPost';
 import EditPost from '../EditPost/EditPost'
-import { postsLoaded, loadingPostsComplete } from '../../actions/actions';
+import { postsLoaded } from '../../actions/actions';
 
 import './App.css';
 
@@ -20,7 +20,6 @@ class App extends React.Component {
             apiServices.getAllPosts()
                 .then(data => {
                     this.props.postsLoaded(data);
-                    this.props.loadingPostsComplete();
                 });
         }
     }
@@ -52,9 +51,6 @@ const mapDispatchToProps = dispatch => {
     return {
         postsLoaded: newPosts => {
             dispatch(postsLoaded(newPosts))
-        },
-        loadingPostsComplete: () => {
-            dispatch(loadingPostsComplete())
         }
     }
 }

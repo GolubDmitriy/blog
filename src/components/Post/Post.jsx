@@ -6,14 +6,11 @@ import ListComments from '../ListComments/ListComments';
 
 import './Post.css';
 
-class Post extends React.Component {
+const Post = ({ posts, id, loadingPosts  }) => {
+
+    const post = posts.filter(post => Number(post.id) === Number(id))[0];
     
-    render() {
-
-        const { posts, id } = this.props;
-
-        const post = posts.filter(post => Number(post.id) === Number(id))[0];
-        
+    if (!loadingPosts && post) {
         return (
             <div>
                 <h1>{ post.title }</h1>
@@ -22,11 +19,18 @@ class Post extends React.Component {
                 <ListComments postId={ id } />
             </div>
         )
+    } 
+
+    if (!loadingPosts && !post) {
+        return <h1>Поста нет...</h1>
     }
+
+    return <h1>Loading...</h1>
 }
 
-const mapStateToProps = ({ posts }) => {
-    return  { posts } 
+
+const mapStateToProps = ({ posts, loadingPosts }) => {
+    return  { posts, loadingPosts } 
 }
 
 export default connect(mapStateToProps)(Post);

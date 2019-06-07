@@ -17,7 +17,8 @@ const reducer = (state=initialState, action) => {
                 posts: action.payload,
                 lastId: action.payload.reduce((a, b) => {
                     return (Number(a.id) > Number(b.id) ? Number(a.id) : Number(b.id))
-                })
+                }),
+                loadingPosts: false
             };
         case 'DELETE_POST':
             return {

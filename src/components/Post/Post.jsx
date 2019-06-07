@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import ListComments from '../ListComments/ListComments';
+import NewComment from '../NewComment/NewComment';
 
 import './Post.css';
 
@@ -16,6 +17,7 @@ const Post = ({ posts, id, loadingPosts  }) => {
                 <h1>{ post.title }</h1>
                 <p>{ post.body }</p>
                 <Link to={"/edit-post/" + id}>Редактировать</Link>
+                <NewComment postId={ id } />
                 <ListComments postId={ id } />
             </div>
         )

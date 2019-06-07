@@ -2,7 +2,8 @@ const initialState = {
     posts: [],
     post: {},
     comments: [],
-    like: {}
+    like: {},
+    loadingPosts: true
 };
 
 const reducer = (state=initialState, action) => {
@@ -43,7 +44,12 @@ const reducer = (state=initialState, action) => {
             };
         case 'SET_LIKE':
             state.like[action.payload] = 1 
-            return state
+            return state;
+        case 'LOADING_POSTS_COMPLETE':
+            return {
+                ...state,
+                loadingPosts: false
+            };
         default:
             return state;
     }

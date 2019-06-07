@@ -3,7 +3,8 @@ const initialState = {
     post: {},
     comments: [],
     like: {},
-    loadingPosts: true
+    loadingPosts: true,
+    foundPosts: []
 };
 
 const reducer = (state=initialState, action) => {
@@ -49,6 +50,16 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 loadingPosts: false
+            };
+        case 'SEARCH_POSTS':
+            return {
+                ...state,
+                foundPosts: state.posts.filter(post => {
+                    if (~post.title.indexOf(action.payload) || ~post.body.indexOf(action.payload)) {
+                        return true;
+                    }
+                    return false;
+                })
             };
         default:
             return state;

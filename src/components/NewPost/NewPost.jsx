@@ -16,7 +16,6 @@ class NewPost extends React.Component {
             title: this.state.valueTitle,
             body: this.state.valueBody,
             userId: 1,
-            id: 101
         } 
         this.props.addNewPost(newPost)
     }

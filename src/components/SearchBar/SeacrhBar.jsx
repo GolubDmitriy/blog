@@ -14,7 +14,10 @@ class SearchBar extends React.Component {
 
     searchPost = event => {
         event.preventDefault();
-        this.props.searchPosts(this.state.searchValue)
+        this.props.searchPosts(this.state.searchValue);
+        this.setState({
+            searchValue: ''
+        });
     }
 
     render() {
@@ -23,7 +26,7 @@ class SearchBar extends React.Component {
                 <form onSubmit={ this.searchPost }>
                     <input 
                         type="text"
-                        value={ this.state.value }
+                        value={ this.state.searchValue }
                         onChange={ this.changeSearchValue } />
                     <input type="submit"/>
                 </form>

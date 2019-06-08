@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class NewComment extends React.Component {
 
@@ -6,12 +7,32 @@ class NewComment extends React.Component {
         newCommentValue: ''
     }
 
+    changeNewCommentValue = event => {
+        this.setState({
+            newCommentValue: event.target.value
+        })
+    }
+
+    sendNewComments = event => {
+        event.preventDefault();
+        console.log(this.state.newCommentValue)
+        this.setState({
+            newCommentValue: ''
+        })
+    }
+
     render() {
         return (
-            <h1>NewComment</h1>
+            <form onSubmit={ this.sendNewComments }>
+                <input 
+                    type="text" 
+                    value={ this.state.newCommentValue }
+                    onChange={ this.changeNewCommentValue } />
+                <input type="submit"/>
+            </form>
         )
     }
 
 }
 
-export default NewComment;
+export default connect()(NewComment);

@@ -67,6 +67,12 @@ const addNewComment = newComment => {
     }
 }
 
+const filterByAlphabet = () => {
+    return {
+        type: 'FILTER_BY_ALPHABET'
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -77,5 +83,6 @@ export {
     setLike,
     loadingPostsComplete,
     searchPosts,
-    addNewComment
+    addNewComment,
+    filterByAlphabet
 }

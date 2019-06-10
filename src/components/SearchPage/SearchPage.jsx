@@ -16,12 +16,15 @@ const SearchPage = ({ foundPosts }) => {
             </li>
         )
     })
-    
-    return (
-        <ul>
-            { elements }
-        </ul>
-    )
+
+    if (elements.length !== 0) {
+        return (
+            <ul>
+                { elements }
+            </ul>
+        )
+    }
+    return <h1>Постов с таким содержанием нет.</h1>
 } 
 
 const mapStateToProps = ({ foundPosts }) => {

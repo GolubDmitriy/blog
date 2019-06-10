@@ -11,11 +11,9 @@ class ListsPosts extends React.Component {
 
     render() {
 
-        const { posts, foundPosts }  = this.props;
+        const { posts }  = this.props;
 
-        const resultPosts = foundPosts.length !== 0 ? foundPosts : posts;
-
-        const elements = resultPosts.map(post => {
+        const elements = posts.map(post => {
             return (
                 <li key={ post.id }>
                     <ListItemPost

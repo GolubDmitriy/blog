@@ -8,7 +8,7 @@ import Post from '../Post/Post';
 import ApiServices from '../../services/apiServices';
 import NewPost from '../NewPost/NewPost';
 import EditPost from '../EditPost/EditPost'
-import { postsLoaded } from '../../actions/actions';
+import { postsLoaded, commentsLoaded } from '../../actions/actions';
 
 import './App.css';
 
@@ -18,9 +18,16 @@ class App extends React.Component {
         if (this.props.loadingPosts) {
             const apiServices = new ApiServices();
             apiServices.getAllPosts()
-                .then(data => {
-                    this.props.postsLoaded(data);
+                .then(posts => {
+                    this.props.postsLoaded(posts);
                 });
+        }
+        if (this.props.loadingComments) {
+            const apiServices = new ApiServices();
+            apiServices.getAllComments()
+                .then(comments => {
+                    this.props.commentsLoaded(comments);
+                }); 
         }
     }
 
@@ -43,14 +50,17 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = ({ posts, loadingPosts }) => {
-    return  { posts, loadingPosts }; 
+const mapStateToProps = ({ posts, loadingPosts, loadingComments, comments }) => {
+    return  { posts, loadingPosts, loadingComments, comments }; 
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         postsLoaded: newPosts => {
             dispatch(postsLoaded(newPosts))
+        },
+        commentsLoaded: comments => {
+            dispatch(commentsLoaded(comments))
         }
     }
 }

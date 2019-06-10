@@ -72,6 +72,11 @@ const reducer = (state=initialState, action) => {
                     return false;
                 })
             };
+        case 'ADD_NEW_COMMENT':
+            return {
+                ...state,
+                comments: [...state.comments, action.payload]
+            }
         default:
             return state;
     }

@@ -24,7 +24,8 @@ const reducer = (state=initialState, action) => {
         case 'DELETE_POST':
             return {
                 ...state,
-                posts: state.posts.filter(post => post.id !== action.payload)
+                posts: state.posts.filter(post => Number(post.id) !== Number(action.payload)),
+                foundPosts: state.foundPosts.filter(post => Number(post.id) !== Number(action.payload))
             };
         case 'POST_LOADED':
             return {
@@ -38,11 +39,11 @@ const reducer = (state=initialState, action) => {
                 loadingComments: false
             };
         case 'ADD_NEW_POST':
-            action.payload.id = ++state.lastId;
+            action.payload.id = state.lastId + 1;
             state.posts.push(action.payload);
             return {
                 ...state,
-                lastId: state.lastId
+                lastId: ++state.lastId
             }
         case 'EDIT_POST':
             return {

@@ -78,6 +78,25 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 comments: [...state.comments, action.payload]
             }
+        case 'FILTER_BY_ALPHABET':
+            const clone_posts = [...state.posts];
+            clone_posts.sort((a, b) => {
+                const post1 = a.title.toLowerCase();
+                const post2 = b.title.toLowerCase();
+
+                let comparison = 0;
+                if (post1 > post2) {
+                    comparison = 1;
+                } else {
+                    comparison = -1;
+                }
+                return comparison;
+            })
+            
+            return {
+                ...state,
+                posts: clone_posts
+            }
         default:
             return state;
     }

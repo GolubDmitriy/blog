@@ -15,7 +15,6 @@ class NewComment extends React.Component {
 
     sendNewComments = event => {
         event.preventDefault();
-        console.log(this.state.newCommentValue)
         this.setState({
             newCommentValue: ''
         })

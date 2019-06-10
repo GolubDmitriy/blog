@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { addNewComment } from '../../actions/actions';
+
 class NewComment extends React.Component {
 
     state = {
@@ -15,6 +17,14 @@ class NewComment extends React.Component {
 
     sendNewComments = event => {
         event.preventDefault();
+        const newComment = {
+            postId: Number(this.props.postId),
+            id: 501,
+            name: "Test",
+            email: "bethrezen-1@mail.ru",
+            body: this.state.newCommentValue
+        }
+        this.props.addNewComment(newComment);
         this.setState({
             newCommentValue: ''
         })
@@ -34,4 +44,12 @@ class NewComment extends React.Component {
 
 }
 
-export default connect()(NewComment);
+const mapDispatchToProps = dispatch => {
+    return {
+        addNewComment: newComment => {
+            dispatch(addNewComment(newComment))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(NewComment);

@@ -60,6 +60,13 @@ const searchPosts = textPosts => {
     }
 }
 
+const addNewComment = newComment => {
+    return {
+        type: 'ADD_NEW_COMMENT',
+        payload: newComment
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -69,5 +76,6 @@ export {
     editPost,
     setLike,
     loadingPostsComplete,
-    searchPosts
+    searchPosts,
+    addNewComment
 }

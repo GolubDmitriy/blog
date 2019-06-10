@@ -4,6 +4,7 @@ const initialState = {
     comments: [],
     like: {},
     loadingPosts: true,
+    loadingComments: true,
     foundPosts: [],
     lastId: 0
 };
@@ -33,7 +34,8 @@ const reducer = (state=initialState, action) => {
         case 'COMMENTS_LOADED':
             return {
                 ...state,
-                comments: action.payload
+                comments: action.payload,
+                loadingComments: false
             };
         case 'ADD_NEW_POST':
             action.payload.id = ++state.lastId;

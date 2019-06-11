@@ -6,7 +6,16 @@ import { deletePost, setLike, setDislike } from '../../actions/actions';
 
 import './ListItemPost.css';
 
-const ListItemPost = ({ title, text, idPost, deletePost, setLike, like, setDislike, dislike }) => {
+const ListItemPost = ({ 
+        title, 
+        text, 
+        idPost, 
+        deletePost, 
+        setLike, 
+        like, 
+        setDislike, 
+        dislike, 
+        comments }) => {
 
     const likeBtn = 
         like ? 
@@ -34,7 +43,7 @@ const ListItemPost = ({ title, text, idPost, deletePost, setLike, like, setDisli
                 { likeBtn }
                 { dislikeBtn }
                 <span>About</span>
-                <span>Comments</span>
+                <span>Comments { comments }</span>
                 <span onClick={() => deletePost(idPost)}>Delete</span>
             </div>
         </div>

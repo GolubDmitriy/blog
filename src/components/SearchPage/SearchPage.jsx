@@ -33,6 +33,8 @@ const SearchPage = ({ foundPosts, statusFilterByAlphabet, statusFilterByAlphabet
                     idPost = { post.id } 
                     title={ post.title }
                     text={ post.body }
+                    like={ post.like }
+                    dislike={ post.dislike }
                 />
             </li>
         )

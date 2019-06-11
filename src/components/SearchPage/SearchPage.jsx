@@ -3,7 +3,12 @@ import { connect } from 'react-redux';
 
 import ListItemPost from '../ListItemPost/ListItemPost';
 
-const SearchPage = ({ foundPosts, statusFilterByAlphabet, statusFilterByAlphabetReverse }) => {
+const SearchPage = ({ 
+        foundPosts, 
+        statusFilterByAlphabet, 
+        statusFilterByAlphabetReverse, 
+        statusFilterByLike, 
+        statusFilterByDislike }) => {
     
     let resultPosts = [...foundPosts];
 
@@ -24,6 +29,20 @@ const SearchPage = ({ foundPosts, statusFilterByAlphabet, statusFilterByAlphabet
 
     if ( statusFilterByAlphabetReverse ) {
         resultPosts.reverse()
+    }
+
+    if ( statusFilterByLike ) {
+        resultPosts = resultPosts.filter(post => post.like)
+        if (resultPosts.length === 0) {
+            return <h1>Понравившихся Вам постов нет.</h1>
+        }
+    }
+
+    if ( statusFilterByDislike ) {
+        resultPosts = resultPosts.filter(post => post.dislike)
+        if (resultPosts.length === 0) {
+            return <h1>Не понравившихся Вам постов нет.</h1>
+        }
     }
 
     const elements = resultPosts.map(post => {
@@ -50,8 +69,20 @@ const SearchPage = ({ foundPosts, statusFilterByAlphabet, statusFilterByAlphabet
     return <h1>Постов с таким содержанием нет.</h1>
 } 
 
-const mapStateToProps = ({ foundPosts, statusFilterByAlphabet, statusFilterByAlphabetReverse }) => {
-    return  { foundPosts, statusFilterByAlphabet, statusFilterByAlphabetReverse }; 
+const mapStateToProps = ({ 
+        foundPosts, 
+        statusFilterByAlphabet, 
+        statusFilterByAlphabetReverse, 
+        statusFilterByLike, 
+        statusFilterByDislike }) => {
+
+    return  { 
+        foundPosts, 
+        statusFilterByAlphabet, 
+        statusFilterByAlphabetReverse, 
+        statusFilterByLike, 
+        statusFilterByDislike 
+    }; 
 }
 
 export default connect(mapStateToProps)(SearchPage);

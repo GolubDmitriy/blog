@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import ListItemPost from '../ListItemPost/ListItemPost';
 
-const SearchPage = ({ foundPosts, statusFilterByAlphabet }) => {
+const SearchPage = ({ foundPosts, statusFilterByAlphabet, statusFilterByAlphabetReverse }) => {
     
     let resultPosts = [...foundPosts];
 
@@ -20,6 +20,10 @@ const SearchPage = ({ foundPosts, statusFilterByAlphabet }) => {
             }
             return comparison;
         })
+    }
+
+    if ( statusFilterByAlphabetReverse ) {
+        resultPosts.reverse()
     }
 
     const elements = resultPosts.map(post => {
@@ -44,8 +48,8 @@ const SearchPage = ({ foundPosts, statusFilterByAlphabet }) => {
     return <h1>Постов с таким содержанием нет.</h1>
 } 
 
-const mapStateToProps = ({ foundPosts, statusFilterByAlphabet }) => {
-    return  { foundPosts, statusFilterByAlphabet }; 
+const mapStateToProps = ({ foundPosts, statusFilterByAlphabet, statusFilterByAlphabetReverse }) => {
+    return  { foundPosts, statusFilterByAlphabet, statusFilterByAlphabetReverse }; 
 }
 
 export default connect(mapStateToProps)(SearchPage);

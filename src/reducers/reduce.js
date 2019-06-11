@@ -7,7 +7,8 @@ const initialState = {
     loadingComments: true,
     foundPosts: [],
     lastId: 0,
-    statusFilterByAlphabet: false
+    statusFilterByAlphabet: false,
+    statusFilterByAlphabetReverse: false
 };
 
 const reducer = (state=initialState, action) => {
@@ -78,29 +79,16 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 comments: [...state.comments, action.payload]
-            }
+            };
         case 'FILTER_BY_ALPHABET':
-            // const clone_posts = [...state.posts];
-            // clone_posts.sort((a, b) => {
-            //     const post1 = a.title.toLowerCase();
-            //     const post2 = b.title.toLowerCase();
-
-            //     let comparison = 0;
-            //     if (post1 > post2) {
-            //         comparison = 1;
-            //     } else {
-            //         comparison = -1;
-            //     }
-            //     return comparison;
-            // })
-            
-            // return {
-            //     ...state,
-            //     posts: clone_posts
-            // }
             return {
                 ...state,
                 statusFilterByAlphabet: true
+            };
+        case 'FILTER_BY_ALPHABET_REVERSE':
+            return {
+                ...state,
+                statusFilterByAlphabetReverse: !state.statusFilterByAlphabetReverse
             }
         default:
             return state;

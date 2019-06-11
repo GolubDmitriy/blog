@@ -98,6 +98,12 @@ const setDislike = idPost => {
     }
 }
 
+const filterByTime = () => {
+    return {
+        type: 'FILTER_BY_TIME'
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -113,5 +119,6 @@ export {
     filterByAlphabetReverse,
     filterByLike,
     filterByDislike,
-    setDislike
+    setDislike,
+    filterByTime
 }

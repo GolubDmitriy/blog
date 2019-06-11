@@ -85,7 +85,8 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 foundPosts: state.posts.filter(post => {
-                    if (~post.title.indexOf(action.payload) || ~post.body.indexOf(action.payload)) {
+                    if (~post.title.toLowerCase().indexOf(action.payload.toLowerCase()) || 
+                        ~post.body.toLowerCase().indexOf(action.payload.toLowerCase())) {
                         return true;
                     }
                     return false;

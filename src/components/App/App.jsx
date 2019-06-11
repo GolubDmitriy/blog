@@ -21,7 +21,10 @@ class App extends React.Component {
             apiServices.getAllPosts()
                 .then(posts => {
                     this.props.postsLoaded(posts);
-                });
+                })
+                .catch(data => {
+                    console.log(data)
+                })
         }
         if (this.props.loadingComments) {
             const apiServices = new ApiServices();

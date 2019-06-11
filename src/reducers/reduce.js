@@ -108,12 +108,14 @@ const reducer = (state=initialState, action) => {
         case 'FILTER_BY_LIKE':
             return {
                 ...state,
-                statusFilterByLike: !state.statusFilterByLike
+                statusFilterByLike: !state.statusFilterByLike,
+                statusFilterByDislike: false
             };
         case 'FILTER_BY_DISLIKE':
             return {
                 ...state,
-                statusFilterByDislike: !state.statusFilterByDislike
+                statusFilterByDislike: !state.statusFilterByDislike,
+                statusFilterByLike: false
             };
         case 'SET_DISLIKE':
             return {

@@ -11,9 +11,26 @@ class ListsPosts extends React.Component {
 
     render() {
 
-        const { posts }  = this.props;
+        const { posts, statusFilterByAlphabet }  = this.props;
 
-        const elements = posts.map(post => {
+        let resultPosts = [...posts];
+
+        if ( statusFilterByAlphabet ) {
+            resultPosts.sort((a, b) => {
+                const post1 = a.title.toLowerCase();
+                const post2 = b.title.toLowerCase();
+
+                let comparison = 0;
+                if (post1 > post2) {
+                    comparison = 1;
+                } else {
+                    comparison = -1;
+                }
+                return comparison;
+            })
+        }
+
+        const elements = resultPosts.map(post => {
             return (
                 <li key={ post.id }>
                     <ListItemPost
@@ -36,8 +53,8 @@ class ListsPosts extends React.Component {
     }
 }
 
-const mapStateToProps = ({ posts, foundPosts }) => {
-    return  { posts, foundPosts }; 
+const mapStateToProps = ({ posts, statusFilterByAlphabet }) => {
+    return  { posts, statusFilterByAlphabet }; 
 }
 
 const mapDispatchToProps = dispatch => {

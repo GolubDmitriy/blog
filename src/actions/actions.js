@@ -79,6 +79,12 @@ const filterByAlphabetReverse = () => {
     }
 }
 
+const filterByLike = () => {
+    return {
+        type: 'FILTER_BY_LIKE'
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -91,5 +97,6 @@ export {
     searchPosts,
     addNewComment,
     filterByAlphabet,
-    filterByAlphabetReverse
+    filterByAlphabetReverse,
+    filterByLike
 }

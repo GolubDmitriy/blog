@@ -10,7 +10,8 @@ const initialState = {
     statusFilterByAlphabet: false,
     statusFilterByAlphabetReverse: false,
     statusFilterByLike: false,
-    statusFilterByDislike: false
+    statusFilterByDislike: false,
+    lastIdComments: 0
 };
 
 const reducer = (state=initialState, action) => {
@@ -40,13 +41,16 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 comments: action.payload,
+                lastIdComments: action.payload.reduce((a, b) => {
+                    return (Number(a.id) > Number(b.id) ? Number(a.id) : Number(b.id))
+                }),
                 loadingComments: false
             };
         case 'ADD_NEW_POST':
             action.payload.id = state.lastId + 1;
-            state.posts.push(action.payload);
             return {
                 ...state,
+                posts: [...state.posts, action.payload],
                 lastId: ++state.lastId
             }
         case 'EDIT_POST':
@@ -93,9 +97,11 @@ const reducer = (state=initialState, action) => {
                 })
             };
         case 'ADD_NEW_COMMENT':
+            action.payload.id = state.lastIdComments + 1;
             return {
                 ...state,
-                comments: [...state.comments, action.payload]
+                comments: [...state.comments, action.payload],
+                lastIdComments: ++state.lastIdComments
             };
         case 'FILTER_BY_ALPHABET':
             return {

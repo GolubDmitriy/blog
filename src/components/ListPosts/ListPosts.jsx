@@ -14,7 +14,8 @@ const ListsPosts = ({
         searchPosts,
         statusFilterByLike,
         statusFilterByDislike,
-        comments }) => {
+        comments,
+        statusFilterByTime }) => {
 
     let resultPosts = [...posts];
 
@@ -33,7 +34,7 @@ const ListsPosts = ({
         })
     }
 
-    if ( statusFilterByAlphabetReverse ) {
+    if ( statusFilterByAlphabetReverse || statusFilterByTime ) {
         resultPosts.reverse()
     }
 
@@ -83,7 +84,8 @@ const mapStateToProps = ({
         statusFilterByAlphabetReverse, 
         statusFilterByLike, 
         statusFilterByDislike,
-        comments }) => {
+        comments,
+        statusFilterByTime }) => {
 
     return { 
         posts, 
@@ -91,7 +93,8 @@ const mapStateToProps = ({
         statusFilterByAlphabetReverse, 
         statusFilterByLike, 
         statusFilterByDislike,
-        comments 
+        comments,
+        statusFilterByTime 
     }; 
 }
 

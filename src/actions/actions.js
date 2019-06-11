@@ -85,6 +85,12 @@ const filterByLike = () => {
     }
 }
 
+const filterByDislike = () => {
+    return {
+        type: 'FILTER_BY_DISLIKE'
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -98,5 +104,6 @@ export {
     addNewComment,
     filterByAlphabet,
     filterByAlphabetReverse,
-    filterByLike
+    filterByLike,
+    filterByDislike
 }

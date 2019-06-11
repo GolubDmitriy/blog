@@ -39,7 +39,7 @@ const ListItemPost = ({
             <div className="post-mini-body">
                 { text }
             </div>
-            <div className="post-mini-menu-bar">
+            <div className="post-mini-menu-bar navbar">
                 { likeBtn }
                 { dislikeBtn }
                 <span>About</span>

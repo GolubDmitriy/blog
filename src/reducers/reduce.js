@@ -11,7 +11,8 @@ const initialState = {
     statusFilterByAlphabetReverse: false,
     statusFilterByLike: false,
     statusFilterByDislike: false,
-    lastIdComments: 0
+    lastIdComments: 0,
+    statusFilterByTime: false
 };
 
 const reducer = (state=initialState, action) => {
@@ -106,12 +107,14 @@ const reducer = (state=initialState, action) => {
         case 'FILTER_BY_ALPHABET':
             return {
                 ...state,
-                statusFilterByAlphabet: true
+                statusFilterByAlphabet: true,
+                statusFilterByTime: false
             };
         case 'FILTER_BY_ALPHABET_REVERSE':
             return {
                 ...state,
-                statusFilterByAlphabetReverse: !state.statusFilterByAlphabetReverse
+                statusFilterByAlphabetReverse: !state.statusFilterByAlphabetReverse,
+                statusFilterByTime: false
             };
         case 'FILTER_BY_LIKE':
             return {
@@ -139,6 +142,13 @@ const reducer = (state=initialState, action) => {
                     }
                     return post;
                 })
+            };
+        case 'FILTER_BY_TIME':
+            return {
+                ...state,
+                statusFilterByTime: !state.statusFilterByTime,
+                statusFilterByAlphabet: false,
+                statusFilterByAlphabetReverse: false
             };
         default:
             return state;

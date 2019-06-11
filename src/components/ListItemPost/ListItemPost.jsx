@@ -7,11 +7,11 @@ import { deletePost, setLike } from '../../actions/actions';
 import './ListItemPost.css';
 
 const ListItemPost = ({ title, text, idPost, deletePost, setLike, like }) => {
-    
+
     const likeBtn = 
-        like[idPost] ? 
-        (<span>Like</span>) :
-        (<span onClick={() => setLike(idPost)}>Like!!!</span>)
+        like ? 
+        (<span onClick={() => setLike(idPost)}>!!!Like!!!</span>) :
+        (<span onClick={() => setLike(idPost)}>Like</span>)
                                  
     return (
         <div className="post-mini">
@@ -26,8 +26,7 @@ const ListItemPost = ({ title, text, idPost, deletePost, setLike, like }) => {
                 { text }
             </div>
             <div className="post-mini-menu-bar">
-                {/* <span onClick={() => setLike(idPost)}>Like</span> */}
-                {likeBtn}
+                { likeBtn }
                 <span>Dislike</span>
                 <span>About</span>
                 <span>Comments</span>
@@ -36,10 +35,6 @@ const ListItemPost = ({ title, text, idPost, deletePost, setLike, like }) => {
         </div>
     )
 };
-
-const mapStateToProps = ({like}) => {
-    return {like}
-} 
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -52,4 +47,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListItemPost);
+export default connect(null, mapDispatchToProps)(ListItemPost);

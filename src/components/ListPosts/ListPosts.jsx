@@ -7,54 +7,53 @@ import { searchPosts } from '../../actions/actions';
 
 import './ListPosts.css';
 
-class ListsPosts extends React.Component {
+const ListsPosts = ({ 
+        posts, 
+        statusFilterByAlphabet, 
+        statusFilterByAlphabetReverse, 
+        searchPosts }) => {
 
-    render() {
+    let resultPosts = [...posts];
 
-        const { posts, statusFilterByAlphabet, statusFilterByAlphabetReverse }  = this.props;
+    if ( statusFilterByAlphabet ) {
+        resultPosts.sort((a, b) => {
+            const post1 = a.title.toLowerCase();
+            const post2 = b.title.toLowerCase();
 
-        let resultPosts = [...posts];
-
-        if ( statusFilterByAlphabet ) {
-            resultPosts.sort((a, b) => {
-                const post1 = a.title.toLowerCase();
-                const post2 = b.title.toLowerCase();
-
-                let comparison = 0;
-                if (post1 > post2) {
-                    comparison = 1;
-                } else {
-                    comparison = -1;
-                }
-                return comparison;
-            })
-        }
-
-        if ( statusFilterByAlphabetReverse ) {
-            resultPosts.reverse()
-        }
-
-        const elements = resultPosts.map(post => {
-            return (
-                <li key={ post.id }>
-                    <ListItemPost
-                        idPost = { post.id } 
-                        title={ post.title }
-                        text={ post.body }
-                    />
-                </li>
-            )
+            let comparison = 0;
+            if (post1 > post2) {
+                comparison = 1;
+            } else {
+                comparison = -1;
+            }
+            return comparison;
         })
-
-        return (
-            <React.Fragment>
-                <SearchBar searchPosts={ this.props.searchPosts } />
-                <ul>
-                    { elements }
-                </ul>
-            </React.Fragment>
-        )
     }
+
+    if ( statusFilterByAlphabetReverse ) {
+        resultPosts.reverse()
+    }
+
+    const elements = resultPosts.map(post => {
+        return (
+            <li key={ post.id }>
+                <ListItemPost
+                    idPost = { post.id } 
+                    title={ post.title }
+                    text={ post.body }
+                />
+            </li>
+        )
+    })
+
+    return (
+        <React.Fragment>
+            <SearchBar searchPosts={ searchPosts } />
+            <ul>
+                { elements }
+            </ul>
+        </React.Fragment>
+    )
 }
 
 const mapStateToProps = ({ posts, statusFilterByAlphabet, statusFilterByAlphabetReverse }) => {

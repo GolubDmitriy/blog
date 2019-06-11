@@ -9,7 +9,8 @@ const SearchPage = ({
         statusFilterByAlphabetReverse, 
         statusFilterByLike, 
         statusFilterByDislike,
-        comments }) => {
+        comments,
+        statusFilterByTime }) => {
     
     let resultPosts = [...foundPosts];
 
@@ -28,7 +29,7 @@ const SearchPage = ({
         })
     }
 
-    if ( statusFilterByAlphabetReverse ) {
+    if ( statusFilterByAlphabetReverse || statusFilterByTime ) {
         resultPosts.reverse()
     }
 
@@ -78,7 +79,8 @@ const mapStateToProps = ({
         statusFilterByAlphabetReverse, 
         statusFilterByLike, 
         statusFilterByDislike,
-        comments }) => {
+        comments,
+        statusFilterByTime }) => {
 
     return  { 
         foundPosts, 
@@ -86,7 +88,8 @@ const mapStateToProps = ({
         statusFilterByAlphabetReverse, 
         statusFilterByLike, 
         statusFilterByDislike,
-        comments 
+        comments,
+        statusFilterByTime 
     }; 
 }
 

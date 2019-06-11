@@ -73,6 +73,12 @@ const filterByAlphabet = () => {
     }
 }
 
+const filterByAlphabetReverse = () => {
+    return {
+        type: 'FILTER_BY_ALPHABET_REVERSE'
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -84,5 +90,6 @@ export {
     loadingPostsComplete,
     searchPosts,
     addNewComment,
-    filterByAlphabet
+    filterByAlphabet,
+    filterByAlphabetReverse
 }

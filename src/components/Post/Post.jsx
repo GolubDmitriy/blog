@@ -13,13 +13,20 @@ const Post = ({ posts, id, loadingPosts  }) => {
     
     if (!loadingPosts && post) {
         return (
-            <div>
-                <h1>{ post.title }</h1>
-                <p>{ post.body }</p>
-                <Link to={"/edit-post/" + id}>Редактировать</Link>
+            <React.Fragment>
+                <div className="jumbotron">
+                    <h1 className="display-6">{ post.title }</h1>
+                    <p className="lead">
+                        { post.body }
+                    </p>
+                    <hr className="my-2" />
+                    <p className="lead">
+                        <Link to={"/edit-post/" + id} className="btn btn-primary">Редактировать</Link>
+                    </p>
+                </div>
                 <NewComment postId={ id } />
                 <ListComments postId={ id } />
-            </div>
+            </React.Fragment>
         )
     } 
 

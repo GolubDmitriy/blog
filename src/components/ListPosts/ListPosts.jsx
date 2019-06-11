@@ -49,7 +49,8 @@ const ListsPosts = ({
                     idPost = { post.id } 
                     title={ post.title }
                     text={ post.body }
-                    like= { post.like }
+                    like={ post.like }
+                    dislike={ post.dislike }
                 />
             </li>
         )

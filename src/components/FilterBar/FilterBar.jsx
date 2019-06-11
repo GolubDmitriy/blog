@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { filterByAlphabet, filterByAlphabetReverse, filterByLike, filterByDislike } from '../../actions/actions';
+import { filterByAlphabet, filterByAlphabetReverse, filterByLike, filterByDislike, filterByTime } from '../../actions/actions';
 
-const FilterBar = ({ filterByAlphabet, filterByAlphabetReverse, statusFilterByAlphabet, filterByLike, filterByDislike }) => {
+const FilterBar = ({ filterByAlphabet, filterByAlphabetReverse, statusFilterByAlphabet, filterByLike, filterByDislike, filterByTime }) => {
 
     const test = statusFilterByAlphabet => {
         if ( statusFilterByAlphabet ) {
@@ -20,6 +20,7 @@ const FilterBar = ({ filterByAlphabet, filterByAlphabetReverse, statusFilterByAl
             <input type="button" value="Like" onClick={ filterByLike } />
             <input type="button" value="Dislike" onClick={ filterByDislike } />
             <input type="button" value="Alph" onClick={ () => test(statusFilterByAlphabet) } />
+            <button type="button" onClick={ filterByTime }>Последние</button>
         </div>
     )
 }
@@ -41,6 +42,9 @@ const mapDispatchToProps = dispatch => {
         },
         filterByDislike: () => {
             dispatch(filterByDislike())
+        },
+        filterByTime: () => {
+            dispatch(filterByTime())
         } 
     }
 }

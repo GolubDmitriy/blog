@@ -13,7 +13,8 @@ const ListsPosts = ({
         statusFilterByAlphabetReverse, 
         searchPosts,
         statusFilterByLike,
-        statusFilterByDislike }) => {
+        statusFilterByDislike,
+        comments }) => {
 
     let resultPosts = [...posts];
 
@@ -51,6 +52,7 @@ const ListsPosts = ({
     }
 
     const elements = resultPosts.map(post => {
+        const commentsPost = comments.filter(comment => Number(post.id) === Number(comment.postId))
         return (
             <li key={ post.id }>
                 <ListItemPost
@@ -59,6 +61,7 @@ const ListsPosts = ({
                     text={ post.body }
                     like={ post.like }
                     dislike={ post.dislike }
+                    comments={ commentsPost.length }
                 />
             </li>
         )
@@ -74,8 +77,22 @@ const ListsPosts = ({
     )
 }
 
-const mapStateToProps = ({ posts, statusFilterByAlphabet, statusFilterByAlphabetReverse, statusFilterByLike, statusFilterByDislike }) => {
-    return  { posts, statusFilterByAlphabet, statusFilterByAlphabetReverse, statusFilterByLike, statusFilterByDislike }; 
+const mapStateToProps = ({ 
+        posts, 
+        statusFilterByAlphabet, 
+        statusFilterByAlphabetReverse, 
+        statusFilterByLike, 
+        statusFilterByDislike,
+        comments }) => {
+
+    return { 
+        posts, 
+        statusFilterByAlphabet, 
+        statusFilterByAlphabetReverse, 
+        statusFilterByLike, 
+        statusFilterByDislike,
+        comments 
+    }; 
 }
 
 const mapDispatchToProps = dispatch => {

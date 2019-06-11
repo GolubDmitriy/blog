@@ -11,7 +11,7 @@ class ListsPosts extends React.Component {
 
     render() {
 
-        const { posts, statusFilterByAlphabet }  = this.props;
+        const { posts, statusFilterByAlphabet, statusFilterByAlphabetReverse }  = this.props;
 
         let resultPosts = [...posts];
 
@@ -28,6 +28,10 @@ class ListsPosts extends React.Component {
                 }
                 return comparison;
             })
+        }
+
+        if ( statusFilterByAlphabetReverse ) {
+            resultPosts.reverse()
         }
 
         const elements = resultPosts.map(post => {
@@ -53,8 +57,8 @@ class ListsPosts extends React.Component {
     }
 }
 
-const mapStateToProps = ({ posts, statusFilterByAlphabet }) => {
-    return  { posts, statusFilterByAlphabet }; 
+const mapStateToProps = ({ posts, statusFilterByAlphabet, statusFilterByAlphabetReverse }) => {
+    return  { posts, statusFilterByAlphabet, statusFilterByAlphabetReverse }; 
 }
 
 const mapDispatchToProps = dispatch => {

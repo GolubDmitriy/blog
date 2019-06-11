@@ -70,7 +70,7 @@ const ListsPosts = ({
     return (
         <React.Fragment>
             <SearchBar searchPosts={ searchPosts } />
-            <ul>
+            <ul className="list-group">
                 { elements }
             </ul>
         </React.Fragment>

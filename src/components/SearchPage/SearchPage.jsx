@@ -8,7 +8,8 @@ const SearchPage = ({
         statusFilterByAlphabet, 
         statusFilterByAlphabetReverse, 
         statusFilterByLike, 
-        statusFilterByDislike }) => {
+        statusFilterByDislike,
+        comments }) => {
     
     let resultPosts = [...foundPosts];
 
@@ -46,6 +47,7 @@ const SearchPage = ({
     }
 
     const elements = resultPosts.map(post => {
+        const commentsPost = comments.filter(comment => Number(post.id) === Number(comment.postId))
         return (
             <li key={ post.id }>
                 <ListItemPost
@@ -54,6 +56,7 @@ const SearchPage = ({
                     text={ post.body }
                     like={ post.like }
                     dislike={ post.dislike }
+                    comments={ commentsPost.length }
                 />
             </li>
         )
@@ -74,14 +77,16 @@ const mapStateToProps = ({
         statusFilterByAlphabet, 
         statusFilterByAlphabetReverse, 
         statusFilterByLike, 
-        statusFilterByDislike }) => {
+        statusFilterByDislike,
+        comments }) => {
 
     return  { 
         foundPosts, 
         statusFilterByAlphabet, 
         statusFilterByAlphabetReverse, 
         statusFilterByLike, 
-        statusFilterByDislike 
+        statusFilterByDislike,
+        comments 
     }; 
 }
 

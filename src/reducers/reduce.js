@@ -8,7 +8,8 @@ const initialState = {
     foundPosts: [],
     lastId: 0,
     statusFilterByAlphabet: false,
-    statusFilterByAlphabetReverse: false
+    statusFilterByAlphabetReverse: false,
+    statusFilterByLike: false
 };
 
 const reducer = (state=initialState, action) => {
@@ -58,8 +59,21 @@ const reducer = (state=initialState, action) => {
                 })
             };
         case 'SET_LIKE':
-            state.like[action.payload] = 1 
-            return state;
+            // state.like[action.payload] = 1 
+            // return state;
+            return {
+                ...state,
+                posts: state.posts.map(post => {
+                    if (Number(post.id) === Number(action.payload)) {
+                        if (post.like) {
+                            delete post.like
+                        } else {
+                            post.like = true
+                        }
+                    }
+                    return post;
+                })
+            }
         case 'LOADING_POSTS_COMPLETE':
             return {
                 ...state,
@@ -89,6 +103,11 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 statusFilterByAlphabetReverse: !state.statusFilterByAlphabetReverse
+            };
+        case 'FILTER_BY_LIKE':
+            return {
+                ...state,
+                statusFilterByLike: !state.statusFilterByLike
             }
         default:
             return state;

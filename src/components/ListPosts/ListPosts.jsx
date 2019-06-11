@@ -11,7 +11,8 @@ const ListsPosts = ({
         posts, 
         statusFilterByAlphabet, 
         statusFilterByAlphabetReverse, 
-        searchPosts }) => {
+        searchPosts,
+        statusFilterByLike }) => {
 
     let resultPosts = [...posts];
 
@@ -34,6 +35,13 @@ const ListsPosts = ({
         resultPosts.reverse()
     }
 
+    if ( statusFilterByLike ) {
+        resultPosts = resultPosts.filter(post => post.like)
+        if (resultPosts.length === 0) {
+            return <h1>Понравившихся Вам постов нет.</h1>
+        }
+    }
+
     const elements = resultPosts.map(post => {
         return (
             <li key={ post.id }>
@@ -41,6 +49,7 @@ const ListsPosts = ({
                     idPost = { post.id } 
                     title={ post.title }
                     text={ post.body }
+                    like= { post.like }
                 />
             </li>
         )
@@ -56,8 +65,8 @@ const ListsPosts = ({
     )
 }
 
-const mapStateToProps = ({ posts, statusFilterByAlphabet, statusFilterByAlphabetReverse }) => {
-    return  { posts, statusFilterByAlphabet, statusFilterByAlphabetReverse }; 
+const mapStateToProps = ({ posts, statusFilterByAlphabet, statusFilterByAlphabetReverse, statusFilterByLike }) => {
+    return  { posts, statusFilterByAlphabet, statusFilterByAlphabetReverse, statusFilterByLike }; 
 }
 
 const mapDispatchToProps = dispatch => {

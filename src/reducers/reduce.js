@@ -9,7 +9,8 @@ const initialState = {
     lastId: 0,
     statusFilterByAlphabet: false,
     statusFilterByAlphabetReverse: false,
-    statusFilterByLike: false
+    statusFilterByLike: false,
+    statusFilterByDislike: false
 };
 
 const reducer = (state=initialState, action) => {
@@ -108,6 +109,11 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 statusFilterByLike: !state.statusFilterByLike
+            };
+        case 'FILTER_BY_DISLIKE':
+            return {
+                ...state,
+                statusFilterByDislike: !state.statusFilterByDislike
             }
         default:
             return state;

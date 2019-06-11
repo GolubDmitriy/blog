@@ -70,6 +70,7 @@ const reducer = (state=initialState, action) => {
                             delete post.like
                         } else {
                             post.like = true
+                            delete post.dislike
                         }
                     }
                     return post;
@@ -126,6 +127,7 @@ const reducer = (state=initialState, action) => {
                             delete post.dislike
                         } else {
                             post.dislike = true
+                            delete post.like
                         }
                     }
                     return post;

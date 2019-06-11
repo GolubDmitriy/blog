@@ -1,24 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { filterByAlphabet } from '../../actions/actions';
+import { filterByAlphabet, filterByAlphabetReverse } from '../../actions/actions';
 
-const FilterBar = ({ filterByAlphabet }) => {
+const FilterBar = ({ filterByAlphabet, filterByAlphabetReverse, statusFilterByAlphabet }) => {
+
+    const test = statusFilterByAlphabet => {
+        if ( statusFilterByAlphabet ) {
+            filterByAlphabet();
+            filterByAlphabetReverse();
+        }
+        else {
+            filterByAlphabet();
+        }
+    }
+
     return (
         <div>
             <input type="button" value="Like" />
             <input type="button" value="Dislike" />
-            <input type="button" value="Alph" onClick={ filterByAlphabet } />
+            <input type="button" value="Alph" onClick={ () => test(statusFilterByAlphabet) } />
         </div>
     )
+}
+
+const mapStateToProps = ({ statusFilterByAlphabet }) => {
+    return { statusFilterByAlphabet }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         filterByAlphabet: () => {
             dispatch(filterByAlphabet())
+        },
+        filterByAlphabetReverse: () => {
+            dispatch(filterByAlphabetReverse())
         } 
     }
 }
 
-export default connect(null, mapDispatchToProps)(FilterBar);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterBar);

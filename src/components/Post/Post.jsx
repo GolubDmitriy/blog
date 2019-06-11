@@ -27,7 +27,11 @@ const Post = ({ posts, id, loadingPosts  }) => {
         return <h1>Поста нет...</h1>
     }
 
-    return <h1>Loading...</h1>
+    return (
+        <div className="spinner-grow spinner-grow-sm" role="status">
+            <span className="sr-only">Loading...</span>
+        </div>
+    )
 }
 
 

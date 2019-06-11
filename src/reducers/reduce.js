@@ -114,7 +114,21 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 statusFilterByDislike: !state.statusFilterByDislike
-            }
+            };
+        case 'SET_DISLIKE':
+            return {
+                ...state,
+                posts: state.posts.map(post => {
+                    if (Number(post.id) === Number(action.payload)) {
+                        if (post.dislike) {
+                            delete post.dislike
+                        } else {
+                            post.dislike = true
+                        }
+                    }
+                    return post;
+                })
+            };
         default:
             return state;
     }

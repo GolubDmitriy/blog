@@ -91,6 +91,13 @@ const filterByDislike = () => {
     }
 }
 
+const setDislike = idPost => {
+    return {
+        type: 'SET_DISLIKE',
+        payload: idPost
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -105,5 +112,6 @@ export {
     filterByAlphabet,
     filterByAlphabetReverse,
     filterByLike,
-    filterByDislike
+    filterByDislike,
+    setDislike
 }

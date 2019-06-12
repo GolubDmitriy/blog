@@ -2,12 +2,26 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import LictComments from '../ListComments/ListComments';
+
 import { deletePost, setLike, setDislike } from '../../actions/actions';
 
 import './ListItemPost.css';
 
 class ListItemPost extends React.Component { 
      
+    state = {
+        visibileComments: false,
+    }
+
+    changeVisibleComments = () => {
+        this.setState(prevState => {
+            return {
+                visibileComments: !prevState.visibileComments
+            }
+        })
+    }
+
     render() {
         const {
             title, 
@@ -46,9 +60,10 @@ class ListItemPost extends React.Component {
                     { likeBtn }
                     { dislikeBtn }
                     <span>About</span>
-                    <span>Comments { comments }</span>
+                    <button onClick={ this.changeVisibleComments }>Comments { comments }</button>
                     <span onClick={() => deletePost(idPost)}>Delete</span>
                 </div>
+                { this.state.visibileComments ? <LictComments postId={ idPost } /> : null }
             </div>
         )
     };

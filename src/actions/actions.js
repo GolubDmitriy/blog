@@ -1,4 +1,4 @@
-const postsLoaded = (newPosts) => {
+const postsLoaded = newPosts => {
     return {
         type: 'POSTS_LOADED',
         payload: newPosts
@@ -12,7 +12,7 @@ const deletePost = idPost => {
     }
 }
 
-const postLoaded = (newPost) => {
+const postLoaded = newPost => {
     return {
         type: 'POST_LOADED',
         payload: newPost
@@ -104,6 +104,12 @@ const filterByTime = () => {
     }
 }
 
+const resetAllFilter = () => {
+    return {
+        type: 'RESET_ALL_FILTER'
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -120,5 +126,6 @@ export {
     filterByLike,
     filterByDislike,
     setDislike,
-    filterByTime
+    filterByTime,
+    resetAllFilter
 }

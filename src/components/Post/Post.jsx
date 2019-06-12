@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import ListComments from '../ListComments/ListComments';
-import NewComment from '../NewComment/NewComment';
+import BlockComments from '../BlockComments/BlockComments';
 
 import './Post.css';
 
@@ -24,8 +23,7 @@ const Post = ({ posts, id, loadingPosts  }) => {
                         <Link to={"/edit-post/" + id} className="btn btn-primary">Редактировать</Link>
                     </p>
                 </div>
-                <NewComment postId={ id } />
-                <ListComments postId={ id } />
+                <BlockComments postId={ id } />
             </React.Fragment>
         )
     } 

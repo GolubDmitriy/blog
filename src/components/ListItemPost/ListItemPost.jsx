@@ -6,49 +6,53 @@ import { deletePost, setLike, setDislike } from '../../actions/actions';
 
 import './ListItemPost.css';
 
-const ListItemPost = ({ 
-        title, 
-        text, 
-        idPost, 
-        deletePost, 
-        setLike, 
-        like, 
-        setDislike, 
-        dislike, 
-        comments }) => {
+class ListItemPost extends React.Component { 
+     
+    render() {
+        const {
+            title, 
+            text, 
+            idPost, 
+            deletePost, 
+            setLike, 
+            like, 
+            setDislike, 
+            dislike, 
+            comments } = this.props;
 
-    const likeBtn = 
-        like ? 
-        (<span onClick={() => setLike(idPost)}>!!!Like!!!</span>) :
-        (<span onClick={() => setLike(idPost)}>Like</span>)
+        const likeBtn = 
+            like ? 
+            (<span onClick={() => setLike(idPost)}>!!!Like!!!</span>) :
+            (<span onClick={() => setLike(idPost)}>Like</span>)
 
-    const dislikeBtn = 
-        dislike ? 
-        (<span onClick={() => setDislike(idPost)}>!!!Dislike!!!</span>) :
-        (<span onClick={() => setDislike(idPost)}>Dislike</span>)
+        const dislikeBtn = 
+            dislike ? 
+            (<span onClick={() => setDislike(idPost)}>!!!Dislike!!!</span>) :
+            (<span onClick={() => setDislike(idPost)}>Dislike</span>)
                                  
-    return (
-        <div className="post-mini">
-            <div className="post-mini-title">
-                <h3>
-                    <Link to={"/post/" + idPost}>
-                        { title }
-                    </Link>
-                </h3>
+        return (
+            <div className="post-mini">
+                <div className="post-mini-title">
+                    <h3>
+                        <Link to={"/post/" + idPost}>
+                            { title }
+                        </Link>
+                    </h3>
+                </div>
+                <div className="post-mini-body">
+                    { text }
+                </div>
+                <div className="post-mini-menu-bar navbar">
+                    { likeBtn }
+                    { dislikeBtn }
+                    <span>About</span>
+                    <span>Comments { comments }</span>
+                    <span onClick={() => deletePost(idPost)}>Delete</span>
+                </div>
             </div>
-            <div className="post-mini-body">
-                { text }
-            </div>
-            <div className="post-mini-menu-bar navbar">
-                { likeBtn }
-                { dislikeBtn }
-                <span>About</span>
-                <span>Comments { comments }</span>
-                <span onClick={() => deletePost(idPost)}>Delete</span>
-            </div>
-        </div>
-    )
-};
+        )
+    };
+}
 
 const mapDispatchToProps = dispatch => {
     return {

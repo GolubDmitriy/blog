@@ -150,6 +150,15 @@ const reducer = (state=initialState, action) => {
                 statusFilterByAlphabet: false,
                 statusFilterByAlphabetReverse: false
             };
+        case 'RESET_ALL_FILTER':
+            return {
+                ...state,
+                statusFilterByAlphabet: false,
+                statusFilterByAlphabetReverse: false,
+                statusFilterByLike: false,
+                statusFilterByDislike: false,
+                statusFilterByTime: false
+            };
         default:
             return state;
     }

@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import LictComments from '../ListComments/ListComments';
-import NewComment from '../NewComment/NewComment'
+import BlockComments from '../BlockComments/BlockComments';
 
 import { deletePost, setLike, setDislike } from '../../actions/actions';
 
@@ -45,12 +44,7 @@ class ListItemPost extends React.Component {
             (<span onClick={() => setDislike(idPost)}>!!!Dislike!!!</span>) :
             (<span onClick={() => setDislike(idPost)}>Dislike</span>)
 
-        const blockComments = 
-            this.state.visibileComments ?
-            (<React.Fragment>
-                <LictComments postId={ idPost } />
-                <NewComment postId={ idPost } />
-            </React.Fragment>) : null
+        const blockComments = this.state.visibileComments ? <BlockComments postId={ idPost } /> : null
                                  
         return (
             <div className="post-mini">

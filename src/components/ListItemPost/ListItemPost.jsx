@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import LictComments from '../ListComments/ListComments';
+import NewComment from '../NewComment/NewComment'
 
 import { deletePost, setLike, setDislike } from '../../actions/actions';
 
@@ -43,6 +44,13 @@ class ListItemPost extends React.Component {
             dislike ? 
             (<span onClick={() => setDislike(idPost)}>!!!Dislike!!!</span>) :
             (<span onClick={() => setDislike(idPost)}>Dislike</span>)
+
+        const blockComments = 
+            this.state.visibileComments ?
+            (<React.Fragment>
+                <LictComments postId={ idPost } />
+                <NewComment postId={ idPost } />
+            </React.Fragment>) : null
                                  
         return (
             <div className="post-mini">
@@ -63,7 +71,7 @@ class ListItemPost extends React.Component {
                     <button onClick={ this.changeVisibleComments }>Comments { comments }</button>
                     <span onClick={() => deletePost(idPost)}>Delete</span>
                 </div>
-                { this.state.visibileComments ? <LictComments postId={ idPost } /> : null }
+                { blockComments }
             </div>
         )
     };

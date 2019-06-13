@@ -57,7 +57,7 @@ const FilterBar = ({ filterByAlphabet,
                 <button 
                     type="button" 
                     onClick={ filterByTime } 
-                    className={statusFilterByTime ? "nav-item btn btn-info" : "nav-item btn btn-outline-info"}>
+                    className="nav-item btn btn-outline-info">
                     {statusFilterByTime ? "Cначала старые" : "Сначала новые"}
                 </button>
             </li>

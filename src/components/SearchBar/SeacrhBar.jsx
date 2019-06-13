@@ -28,7 +28,7 @@ class SearchBar extends React.Component {
                         type="text"
                         value={ this.state.searchValue }
                         onChange={ this.changeSearchValue } />
-                    <input type="submit"/>
+                    <input type="submit" value="Найти"/>
                 </form>
             </div>
         )

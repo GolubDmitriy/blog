@@ -163,7 +163,7 @@ const reducer = (state=initialState, action) => {
         case 'ADD_NUMBER_VISIBLE_POSTS':
             return {
                 ...state,
-                numberVisiblePosts: state.numberVisiblePosts += 10
+                numberVisiblePosts: state.numberVisiblePosts + 10
             };
         default:
             return state;

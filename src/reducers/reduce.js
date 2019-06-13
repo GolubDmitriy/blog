@@ -171,6 +171,11 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 numberVisiblePosts: state.posts.length
+            };
+        case 'REMOVE_SEARCH_STATUS':
+            return {
+                ...state,
+                isSeacrh: false
             }
         default:
             return state;

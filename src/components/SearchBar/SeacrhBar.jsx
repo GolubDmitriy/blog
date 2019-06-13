@@ -17,7 +17,6 @@ class SearchBar extends React.Component {
         this.props.searchPosts(this.state.searchValue);
         this.setState({
             searchValue: '',
-            redirect: true
         });
     }
 

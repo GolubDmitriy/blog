@@ -18,13 +18,33 @@ const ListsPosts = ({
         comments,
         statusFilterByTime,
         numberVisiblePosts,
-        loadingPosts }) => {
+        loadingPosts,
+        isSeacrh,
+        foundPosts }) => {
 
     if ( loadingPosts ) {
         return <h1>Loading...</h1>
     }
 
-    let resultPosts = [...posts];
+    let resultPosts = isSeacrh ? [...foundPosts] : [...posts]
+
+    if (isSeacrh && resultPosts.length === 0) {
+        return <h1>Постов с таким содержанием нет.</h1> 
+    }
+
+    if ( statusFilterByLike ) {
+        resultPosts = resultPosts.filter(post => post.like)
+        if (resultPosts.length === 0) {
+            return <h1>Понравившихся Вам постов нет.</h1>
+        }
+    }
+
+    if ( statusFilterByDislike ) {
+        resultPosts = resultPosts.filter(post => post.dislike)
+        if (resultPosts.length === 0) {
+            return <h1>Не понравившихся Вам постов нет.</h1>
+        }
+    }
 
     if ( statusFilterByAlphabet ) {
         resultPosts.sort((a, b) => {
@@ -43,20 +63,6 @@ const ListsPosts = ({
 
     if ( statusFilterByAlphabetReverse || statusFilterByTime ) {
         resultPosts.reverse()
-    }
-
-    if ( statusFilterByLike ) {
-        resultPosts = resultPosts.filter(post => post.like)
-        if (resultPosts.length === 0) {
-            return <h1>Понравившихся Вам постов нет.</h1>
-        }
-    }
-
-    if ( statusFilterByDislike ) {
-        resultPosts = resultPosts.filter(post => post.dislike)
-        if (resultPosts.length === 0) {
-            return <h1>Не понравившихся Вам постов нет.</h1>
-        }
     }
 
     const visiblePosts = resultPosts.slice(0, numberVisiblePosts)
@@ -83,7 +89,7 @@ const ListsPosts = ({
             <ul className="list-group">
                 { elements }
             </ul>
-            <VisibleBar />
+            <VisibleBar maxNumberVisible={ resultPosts.length } />
         </React.Fragment>
     )
 }
@@ -97,7 +103,9 @@ const mapStateToProps = ({
         comments,
         statusFilterByTime,
         numberVisiblePosts,
-        loadingPosts }) => {
+        loadingPosts,
+        isSeacrh,
+        foundPosts }) => {
 
     return { 
         posts, 
@@ -108,7 +116,9 @@ const mapStateToProps = ({
         comments,
         statusFilterByTime,
         numberVisiblePosts,
-        loadingPosts 
+        loadingPosts,
+        isSeacrh,
+        foundPosts 
     }; 
 }
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import ListItemPost from '../ListItemPost/ListItemPost';
 import SearchBar from '../SearchBar/SeacrhBar';
+import VisibleBar from '../VisibleBar/VisibleBar';
 import { searchPosts } from '../../actions/actions';
 
 import './ListPosts.css';
@@ -16,7 +17,12 @@ const ListsPosts = ({
         statusFilterByDislike,
         comments,
         statusFilterByTime,
-        numberVisiblePosts }) => {
+        numberVisiblePosts,
+        loadingPosts }) => {
+
+    if ( loadingPosts ) {
+        return <h1>Loading...</h1>
+    }
 
     let resultPosts = posts.slice(0, numberVisiblePosts);
 
@@ -75,6 +81,7 @@ const ListsPosts = ({
             <ul className="list-group">
                 { elements }
             </ul>
+            <VisibleBar />
         </React.Fragment>
     )
 }
@@ -87,7 +94,8 @@ const mapStateToProps = ({
         statusFilterByDislike,
         comments,
         statusFilterByTime,
-        numberVisiblePosts }) => {
+        numberVisiblePosts,
+        loadingPosts }) => {
 
     return { 
         posts, 
@@ -97,7 +105,8 @@ const mapStateToProps = ({
         statusFilterByDislike,
         comments,
         statusFilterByTime,
-        numberVisiblePosts 
+        numberVisiblePosts,
+        loadingPosts 
     }; 
 }
 

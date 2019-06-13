@@ -1,11 +1,9 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 
 class SearchBar extends React.Component {
 
     state = {
         searchValue: '',
-        redirect: false
     }
 
     changeSearchValue = event => {
@@ -24,9 +22,6 @@ class SearchBar extends React.Component {
     }
 
     render() {
-        if (this.state.redirect) {
-            return <Redirect to="/search" />
-        }
         return (
             <div>
                 <form onSubmit={ this.searchPost }>

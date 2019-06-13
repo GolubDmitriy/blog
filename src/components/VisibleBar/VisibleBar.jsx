@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 import { addNumberVisiblePosts, showAllPosts } from '../../actions/actions';
 
-const VisibleBar = ({ posts, numberVisiblePosts, addNumberVisiblePosts, showAllPosts }) => {
+const VisibleBar = ({ numberVisiblePosts, addNumberVisiblePosts, showAllPosts, maxNumberVisible }) => {
     
-    if ( numberVisiblePosts >= posts.length ) {
+    if ( numberVisiblePosts >= maxNumberVisible) {
         return null;
     }
     
@@ -17,8 +17,8 @@ const VisibleBar = ({ posts, numberVisiblePosts, addNumberVisiblePosts, showAllP
     )
 }
 
-const mapStateToProps = ({ posts, numberVisiblePosts }) => {
-    return { posts, numberVisiblePosts };
+const mapStateToProps = ({ numberVisiblePosts }) => {
+    return { numberVisiblePosts };
 }
 
 const mapDispatchToProps = dispatch => {

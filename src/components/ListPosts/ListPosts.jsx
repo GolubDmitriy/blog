@@ -15,9 +15,10 @@ const ListsPosts = ({
         statusFilterByLike,
         statusFilterByDislike,
         comments,
-        statusFilterByTime }) => {
+        statusFilterByTime,
+        numberVisiblePosts }) => {
 
-    let resultPosts = [...posts];
+    let resultPosts = posts.slice(0, numberVisiblePosts);
 
     if ( statusFilterByAlphabet ) {
         resultPosts.sort((a, b) => {
@@ -85,7 +86,8 @@ const mapStateToProps = ({
         statusFilterByLike, 
         statusFilterByDislike,
         comments,
-        statusFilterByTime }) => {
+        statusFilterByTime,
+        numberVisiblePosts }) => {
 
     return { 
         posts, 
@@ -94,7 +96,8 @@ const mapStateToProps = ({
         statusFilterByLike, 
         statusFilterByDislike,
         comments,
-        statusFilterByTime 
+        statusFilterByTime,
+        numberVisiblePosts 
     }; 
 }
 

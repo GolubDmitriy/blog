@@ -1,20 +1,38 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import FilterBar from '../FilterBar/FilterBar'
+import { resetAllFilter, removeSearchStatus } from '../../actions/actions';
+import FilterBar from '../FilterBar/FilterBar';
 
 import './Header.css';
 
-const Header = () => {
+const Header = ({ resetAllFilter, removeSearchStatus }) => {
+    
+    const reset = () => {
+        resetAllFilter()
+        removeSearchStatus()
+    }
+    
     return (
         <div className="navbar">
             <h1 className="nav-item">Header</h1>
-            <Link to="/posts/">Posts</Link>
+            <Link to="/posts/" onClick={ reset }>Posts</Link>
             <Link to="/new-post">New Post</Link>
             <FilterBar />
         </div>
     )
 }
 
-export default Header;
+const mapDispatchToProps = dispatch => {
+    return {
+        resetAllFilter: () => {
+            dispatch(resetAllFilter())
+        },
+        removeSearchStatus: () => {
+            dispatch(removeSearchStatus())
+        } 
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Header);

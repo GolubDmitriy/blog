@@ -72,7 +72,7 @@ class NewPost extends React.Component {
                         <label htmlFor="body-new-post">Содержимое поста</label>
                         <textarea 
                             type="text" 
-                            placeholder="body" 
+                            placeholder="Содержимое поста" 
                             value={ this.state.valueBody }
                             onChange={ this.changeValueBody }
                             className="form-control"

@@ -13,7 +13,8 @@ const initialState = {
     statusFilterByDislike: false,
     lastIdComments: 0,
     statusFilterByTime: false,
-    numberVisiblePosts: 10
+    numberVisiblePosts: 10,
+    isSeacrh: false
 };
 
 const reducer = (state=initialState, action) => {
@@ -96,7 +97,8 @@ const reducer = (state=initialState, action) => {
                         return true;
                     }
                     return false;
-                })
+                }),
+                isSeacrh: true
             };
         case 'ADD_NEW_COMMENT':
             action.payload.id = state.lastIdComments + 1;

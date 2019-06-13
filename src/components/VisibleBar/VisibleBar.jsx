@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addNumberVisiblePosts } from '../../actions/actions';
+import { addNumberVisiblePosts, showAllPosts } from '../../actions/actions';
 
-const VisibleBar = ({ posts, numberVisiblePosts, addNumberVisiblePosts }) => {
+const VisibleBar = ({ posts, numberVisiblePosts, addNumberVisiblePosts, showAllPosts }) => {
     
     if ( numberVisiblePosts >= posts.length ) {
         return null;
@@ -12,7 +12,7 @@ const VisibleBar = ({ posts, numberVisiblePosts, addNumberVisiblePosts }) => {
     return (
         <div>
             <button onClick={ addNumberVisiblePosts }>Показать следующие посты</button>
-            <button>Показать все посты</button>
+            <button onClick={ showAllPosts }>Показать все посты</button>
         </div>
     )
 }
@@ -25,6 +25,9 @@ const mapDispatchToProps = dispatch => {
     return {
         addNumberVisiblePosts: () => {
             dispatch(addNumberVisiblePosts())
+        },
+        showAllPosts: () => {
+            dispatch(showAllPosts())
         }
     }
 }

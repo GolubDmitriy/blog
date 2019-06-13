@@ -10,27 +10,42 @@ class EditPost extends React.Component {
         valueTitle: '',
         valueBody: '',
         errorBody: false,
-        errorTitle: false
+        errorTitle: false,
+        errorLoading: false
     }
 
     componentDidMount() {
-        if (this.props.posts.length === 0) {
+        if (this.props.loadingPosts) {
             const apiServices = new ApiServices();
             apiServices.getAllPosts()
                 .then(data => {
                     this.props.postsLoaded(data);
                     const post = this.props.posts.filter(post => Number(post.id) === Number(this.props.id))[0];
-                    this.setState({
-                        valueTitle: post.title,
-                        valueBody: post.body
-                    }) 
+                    try {
+                        this.setState({
+                            valueTitle: post.title,
+                            valueBody: post.body
+                        }) 
+                    }
+                    catch {
+                        this.setState({
+                            errorLoading: true
+                        })
+                    }
                 });
         } else {
             const post = this.props.posts.filter(post => Number(post.id) === Number(this.props.id))[0];
-            this.setState({
-                valueTitle: post.title,
-                valueBody: post.body
-            }) 
+            try {
+                this.setState({
+                    valueTitle: post.title,
+                    valueBody: post.body
+                }) 
+            }
+            catch {
+                this.setState({
+                    errorLoading: true
+                })
+            }
         }
     } 
 
@@ -64,6 +79,10 @@ class EditPost extends React.Component {
     }
 
     render() {
+
+        if ( this.state.errorLoading ) {
+            return (<h4>Упс, не удалось найти этот пост...</h4>)
+        }
 
         const editPost = (
             <div>

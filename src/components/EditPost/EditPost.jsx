@@ -8,7 +8,9 @@ class EditPost extends React.Component {
 
     state = {
         valueTitle: '',
-        valueBody: ''
+        valueBody: '',
+        errorBody: false,
+        errorTitle: false
     }
 
     componentDidMount() {
@@ -44,42 +46,62 @@ class EditPost extends React.Component {
         })
     }
     
-    sendEditPost = () => {
-        const post = {
-            title: this.state.valueTitle,
-            body: this.state.valueBody,
-            id: this.props.id,
-            userId: 1
-        }
-        this.props.editPost(post);
+    sendEditPost = event => {
+        event.preventDefault();
+        if ( this.state.valueBody > 3 && this.state.valueTitle > 3 ) {
+            const post = {
+                title: this.state.valueTitle,
+                body: this.state.valueBody,
+                id: this.props.id,
+                userId: 1
+            }
+            this.props.editPost(post);
+        } 
+        this.setState({
+            errorTitle: this.state.valueTitle.length < 3 ? true : false,
+            errorBody: this.state.valueBody.length < 3 ? true : false
+        })
     }
 
     render() {
 
         const editPost = (
             <div>
-                <input 
-                    type="text" 
-                    value={ this.state.valueTitle }
-                    onChange={ this.changeValueTitle } />
-                <textarea 
-                    cols="30" 
-                    rows="10" 
-                    value={ this.state.valueBody }
-                    onChange={ this.changeValueBody } />
-                <input 
-                    type="button" 
-                    value="Редактировать"
-                    onClick={ this.sendEditPost } />
+                <form onSubmit={ this.sendEditPost }>
+                    <div className="form-group">
+                        <label htmlFor="title-new-post">Тема поста</label>
+                        <input 
+                            type="text" 
+                            placeholder="Тема поста" 
+                            value={ this.state.valueTitle }
+                            onChange={ this.changeValueTitle }
+                            className="form-control"
+                            id="title-new-post" />
+                        { this.state.errorTitle ? <p className="text-danger">Тема поста должна содержать хотя бы 4 символа.</p> : null }                        
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="body-new-post">Содержимое поста</label>
+                        <textarea 
+                            type="text" 
+                            placeholder="Содержимое поста" 
+                            value={ this.state.valueBody }
+                            onChange={ this.changeValueBody }
+                            className="form-control"
+                            id="body-new-post"
+                            rows="20" />
+                        { this.state.errorBody ? <p className="text-danger">Содержимое поста должна содержать хотя бы 4 символа.</p> : null }
+                    </div>
+                    <input type="submit" />
+                </form>
             </div>
         )
 
-        return this.props.posts.length !== 0 ? editPost : (<h1>Loading</h1>)
+        return this.props.loadingPosts ? (<h1>Loading...</h1>) : editPost
     }
 };
 
-const mapStateToProps = ({posts}) => {
-    return { posts }
+const mapStateToProps = ({ posts, loadingPosts }) => {
+    return { posts, loadingPosts }
 } 
 
 const mapDispatchToProps = dispatch => {

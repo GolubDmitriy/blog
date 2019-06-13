@@ -116,6 +116,12 @@ const addNumberVisiblePosts = () => {
     }
 }
 
+const showAllPosts = () => {
+    return {
+        type: 'SHOW_ALL_POSTS'
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -134,5 +140,6 @@ export {
     setDislike,
     filterByTime,
     resetAllFilter,
-    addNumberVisiblePosts
+    addNumberVisiblePosts,
+    showAllPosts
 }

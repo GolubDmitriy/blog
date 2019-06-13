@@ -122,6 +122,12 @@ const showAllPosts = () => {
     }
 }
 
+const removeSearchStatus = () => {
+    return {
+        type: 'REMOVE_SEARCH_STATUS'
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -141,5 +147,6 @@ export {
     filterByTime,
     resetAllFilter,
     addNumberVisiblePosts,
-    showAllPosts
+    showAllPosts,
+    removeSearchStatus
 }

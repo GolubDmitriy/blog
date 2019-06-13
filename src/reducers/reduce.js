@@ -165,6 +165,11 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 numberVisiblePosts: state.numberVisiblePosts + 10
             };
+        case 'SHOW_ALL_POSTS':
+            return {
+                ...state,
+                numberVisiblePosts: state.posts.length
+            }
         default:
             return state;
     }

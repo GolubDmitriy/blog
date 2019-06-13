@@ -36,16 +36,27 @@ class NewPost extends React.Component {
         return (
             <div>
                 <form onSubmit={ this.sendNewPost }>
-                    <input 
-                        type="text" 
-                        placeholder="title" 
-                        value={ this.state.valueTitle }
-                        onChange={ this.changeValueTitle } />
-                    <input 
-                        type="text" 
-                        placeholder="body" 
-                        value={ this.state.valueBody }
-                        onChange={ this.changeValueBody } />
+                    <div className="form-group">
+                        <label htmlFor="title-new-post">Тема поста</label>
+                        <input 
+                            type="text" 
+                            placeholder="Тема поста" 
+                            value={ this.state.valueTitle }
+                            onChange={ this.changeValueTitle }
+                            className="form-control"
+                            id="title-new-post" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="body-new-post">Тема поста</label>
+                        <textarea 
+                            type="text" 
+                            placeholder="body" 
+                            value={ this.state.valueBody }
+                            onChange={ this.changeValueBody }
+                            className="form-control"
+                            id="body-new-post"
+                            rows="20" />
+                    </div>
                     <input type="submit" />
                 </form>
             </div>

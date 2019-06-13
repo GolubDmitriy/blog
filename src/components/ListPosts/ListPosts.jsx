@@ -24,7 +24,7 @@ const ListsPosts = ({
         return <h1>Loading...</h1>
     }
 
-    let resultPosts = posts.slice(0, numberVisiblePosts);
+    let resultPosts = [...posts];
 
     if ( statusFilterByAlphabet ) {
         resultPosts.sort((a, b) => {
@@ -59,7 +59,9 @@ const ListsPosts = ({
         }
     }
 
-    const elements = resultPosts.map(post => {
+    const visiblePosts = resultPosts.slice(0, numberVisiblePosts)
+
+    const elements = visiblePosts.map(post => {
         const commentsPost = comments.filter(comment => Number(post.id) === Number(comment.postId))
         return (
             <li key={ post.id }>

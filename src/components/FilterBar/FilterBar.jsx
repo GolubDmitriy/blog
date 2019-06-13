@@ -14,7 +14,11 @@ const FilterBar = ({ filterByAlphabet,
         filterByLike, 
         filterByDislike, 
         filterByTime, 
-        resetAllFilter }) => {
+        resetAllFilter,
+        statusFilterByTime,
+        statusFilterByDislike,
+        statusFilterByLike,
+        statusFilterByAlphabetReverse }) => {
 
     const test = statusFilterByAlphabet => {
         if ( statusFilterByAlphabet ) {
@@ -27,18 +31,60 @@ const FilterBar = ({ filterByAlphabet,
     }
 
     return (
-        <div>
-            <input type="button" value="Like" onClick={ filterByLike } />
-            <input type="button" value="Dislike" onClick={ filterByDislike } />
-            <input type="button" value="Alph" onClick={ () => test(statusFilterByAlphabet) } />
-            <button type="button" onClick={ filterByTime }>Последние</button>
-            <button type="button" onClick={ resetAllFilter }>Сбросить</button>
-        </div>
+        <ul className="nav nav-pills">
+            <li>
+                <input 
+                    type="button" 
+                    value="Like" 
+                    onClick={ filterByLike } 
+                    className={statusFilterByLike ? "nav-item btn btn-info" : "nav-item btn btn-outline-info"}/>
+            </li>
+            <li>
+                <input 
+                    type="button" 
+                    value="Dislike" 
+                    onClick={ filterByDislike } 
+                    className={statusFilterByDislike ? "nav-item btn btn-info" : "nav-item btn btn-outline-info"}/>
+            </li>
+            <li>
+                <input 
+                    type="button" 
+                    value={ statusFilterByAlphabetReverse ? "По алфавиту Z-A" : "По алфавиту A-Z" } 
+                    onClick={ () => test(statusFilterByAlphabet) } 
+                    className={statusFilterByAlphabet ? "nav-item btn btn-info" : "nav-item btn btn-outline-info" }/>
+            </li>
+            <li>    
+                <button 
+                    type="button" 
+                    onClick={ filterByTime } 
+                    className={statusFilterByTime ? "nav-item btn btn-info" : "nav-item btn btn-outline-info"}>
+                    {statusFilterByTime ? "Cначала старые" : "Сначала новые"}
+                </button>
+            </li>
+            <li>
+                <button 
+                    type="button" 
+                    onClick={ resetAllFilter } 
+                    className="nav-item btn btn-outline-info">
+                    Сбросить
+                </button>
+            </li>
+        </ul>
     )
 }
 
-const mapStateToProps = ({ statusFilterByAlphabet }) => {
-    return { statusFilterByAlphabet }
+const mapStateToProps = ({ 
+        statusFilterByAlphabet, 
+        statusFilterByTime, 
+        statusFilterByDislike,
+        statusFilterByLike,
+        statusFilterByAlphabetReverse }) => {
+    return { 
+        statusFilterByAlphabet, 
+        statusFilterByTime, 
+        statusFilterByDislike,
+        statusFilterByLike,
+        statusFilterByAlphabetReverse }
 }
 
 const mapDispatchToProps = dispatch => {

@@ -110,6 +110,12 @@ const resetAllFilter = () => {
     }
 }
 
+const addNumberVisiblePosts = () => {
+    return {
+        type: 'ADD_NUMBER_VISIBLE_POSTS'
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -127,5 +133,6 @@ export {
     filterByDislike,
     setDislike,
     filterByTime,
-    resetAllFilter
+    resetAllFilter,
+    addNumberVisiblePosts
 }

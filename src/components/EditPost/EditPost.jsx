@@ -63,19 +63,20 @@ class EditPost extends React.Component {
     
     sendEditPost = event => {
         event.preventDefault();
-        if ( this.state.valueBody > 3 && this.state.valueTitle > 3 ) {
-            const post = {
+        if ( this.state.valueBody.length > 3 && this.state.valueTitle.length > 3 ) {
+            const newPost = {
                 title: this.state.valueTitle,
                 body: this.state.valueBody,
                 id: this.props.id,
                 userId: 1
             }
-            this.props.editPost(post);
-        } 
-        this.setState({
-            errorTitle: this.state.valueTitle.length < 3 ? true : false,
-            errorBody: this.state.valueBody.length < 3 ? true : false
-        })
+            this.props.editPost(newPost);
+        } else {
+            this.setState({
+                errorTitle: this.state.valueTitle.length < 3 ? true : false,
+                errorBody: this.state.valueBody.length < 3 ? true : false
+            })
+        }
     }
 
     render() {

@@ -70,7 +70,7 @@ const ListsPosts = ({
     const elements = visiblePosts.map(post => {
         const commentsPost = comments.filter(comment => Number(post.id) === Number(comment.postId))
         return (
-            <li key={ post.id }>
+            <li key={ post.id } className="shadow p-3 mb-5 bg-light rounded" >
                 <ListItemPost
                     idPost = { post.id } 
                     title={ post.title }

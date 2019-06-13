@@ -22,6 +22,7 @@ const ListComments = ({ comments, postId }) => {
 
     return (
         <React.Fragment>
+            <h4 className="mb-1">Комментарии к посту:</h4>
             <ul className="list-group" >
                 { commentsList }
             </ul>

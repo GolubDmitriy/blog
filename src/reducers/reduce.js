@@ -12,7 +12,8 @@ const initialState = {
     statusFilterByLike: false,
     statusFilterByDislike: false,
     lastIdComments: 0,
-    statusFilterByTime: false
+    statusFilterByTime: false,
+    numberVisiblePosts: 10
 };
 
 const reducer = (state=initialState, action) => {
@@ -158,6 +159,11 @@ const reducer = (state=initialState, action) => {
                 statusFilterByLike: false,
                 statusFilterByDislike: false,
                 statusFilterByTime: false
+            };
+        case 'ADD_NUMBER_VISIBLE_POSTS':
+            return {
+                ...state,
+                numberVisiblePosts: state.numberVisiblePosts += 10
             };
         default:
             return state;

@@ -15,12 +15,12 @@ const Header = ({ resetAllFilter, removeSearchStatus }) => {
     }
     
     return (
-        <div className="navbar">
-            <h1 className="nav-item">Header</h1>
-            <Link to="/posts/" onClick={ reset }>Posts</Link>
-            <Link to="/new-post">New Post</Link>
+        <nav className="nav">
+            <h1 className="nav-link">Header</h1>
+            <Link to="/posts/" onClick={ reset } className="nav-link">Posts</Link>
+            <Link to="/new-post" className="nav-link">New Post</Link>
             <FilterBar />
-        </div>
+        </nav>
     )
 }
 

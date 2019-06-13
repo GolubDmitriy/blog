@@ -36,13 +36,13 @@ class ListItemPost extends React.Component {
 
         const likeBtn = 
             like ? 
-            (<span onClick={() => setLike(idPost)}>!!!Like!!!</span>) :
-            (<span onClick={() => setLike(idPost)}>Like</span>)
+            (<span onClick={() => setLike(idPost)} className="btn btn-success">Like</span>) :
+            (<span onClick={() => setLike(idPost)} className="btn btn-outline-success">Like</span>)
 
         const dislikeBtn = 
             dislike ? 
-            (<span onClick={() => setDislike(idPost)}>!!!Dislike!!!</span>) :
-            (<span onClick={() => setDislike(idPost)}>Dislike</span>)
+            (<span onClick={() => setDislike(idPost)} className="btn btn-danger">Dislike</span>) :
+            (<span onClick={() => setDislike(idPost)} className="btn btn-outline-danger">Dislike</span>)
 
         const blockComments = this.state.visibileComments ? <BlockComments postId={ idPost } /> : null
                                  
@@ -62,8 +62,14 @@ class ListItemPost extends React.Component {
                     { likeBtn }
                     { dislikeBtn }
                     <span>About</span>
-                    <button onClick={ this.changeVisibleComments }>Comments { comments }</button>
-                    <span onClick={() => deletePost(idPost)}>Delete</span>
+                    <button onClick={ this.changeVisibleComments }
+                        className="btn btn-outline-primary">
+                        Comments { comments }
+                    </button>
+                    <span onClick={() => deletePost(idPost)}
+                        className="btn btn-outline-dark">
+                        Delete
+                    </span>
                 </div>
                 { blockComments }
             </div>

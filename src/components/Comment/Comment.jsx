@@ -3,9 +3,9 @@ import React from 'react';
 const Comment = ({ email, name, body }) => {
     return (
         <div>
-            <h4>{ name }</h4>
+            <h5 className="mb-1 text-center">{ name }</h5>
             <p>{ email }</p>
-            <p>{ body }</p>
+            <p className="mb-1">{ body }</p>
         </div>
     )
 }

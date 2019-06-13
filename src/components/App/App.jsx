@@ -31,7 +31,10 @@ class App extends React.Component {
             apiServices.getAllComments()
                 .then(comments => {
                     this.props.commentsLoaded(comments);
-                }); 
+                })
+                .catch(data => {
+                    console.log(data)
+                })
         }
     }
 

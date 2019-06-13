@@ -10,7 +10,7 @@ const ListComments = ({ comments, postId }) => {
 
     const commentsList = commentsByPost.map(comment => {
         return (
-            <li key={ comment.id }>
+            <li key={ comment.id } className="list-group-item" >
                 <Comment 
                     name={ comment.name }
                     email={ comment.email }
@@ -21,9 +21,11 @@ const ListComments = ({ comments, postId }) => {
     })
 
     return (
-        <ul>
-            { commentsList }
-        </ul>
+        <React.Fragment>
+            <ul className="list-group" >
+                { commentsList }
+            </ul>
+        </React.Fragment>
     )
 }
 

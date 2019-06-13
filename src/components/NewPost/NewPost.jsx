@@ -7,17 +7,31 @@ class NewPost extends React.Component {
     
     state = {
         valueTitle: '',
-        valueBody: '' 
+        valueBody: '',
+        statusSendNewPost: false,
+        errorTitle: false,
+        errorBody: false 
     }
 
     sendNewPost = event => {
         event.preventDefault();
-        const newPost = {
-            title: this.state.valueTitle,
-            body: this.state.valueBody,
-            userId: 1,
-        } 
-        this.props.addNewPost(newPost)
+        if (this.state.valueTitle.length > 3 && this.state.valueBody.length > 3) {
+            const newPost = {
+                title: this.state.valueTitle,
+                body: this.state.valueBody,
+                userId: 1,
+            } 
+            this.props.addNewPost(newPost)
+            this.setState({
+                valueTitle: '',
+                valueBody: '',
+                statusSendNewPost: true 
+            })
+        }
+        this.setState({
+            errorTitle: this.state.valueTitle.length < 3 ? true : false,
+            errorBody: this.state.valueBody.length < 3 ? true : false
+        })
     }
 
     changeValueTitle = event => {
@@ -33,6 +47,13 @@ class NewPost extends React.Component {
     }
     
     render() {
+
+        if ( this.state.statusSendNewPost ) {
+            return (
+                <h3>Ваш пост успешно добавлен.</h3>
+            )
+        }
+
         return (
             <div>
                 <form onSubmit={ this.sendNewPost }>
@@ -45,9 +66,10 @@ class NewPost extends React.Component {
                             onChange={ this.changeValueTitle }
                             className="form-control"
                             id="title-new-post" />
+                        { this.state.errorTitle ? <p className="text-danger">Тема поста должна содержать хотя бы 4 символа.</p> : null }                        
                     </div>
                     <div className="form-group">
-                        <label htmlFor="body-new-post">Тема поста</label>
+                        <label htmlFor="body-new-post">Содержимое поста</label>
                         <textarea 
                             type="text" 
                             placeholder="body" 
@@ -56,6 +78,7 @@ class NewPost extends React.Component {
                             className="form-control"
                             id="body-new-post"
                             rows="20" />
+                        { this.state.errorBody ? <p className="text-danger">Содержимое поста должна содержать хотя бы 4 символа.</p> : null }
                     </div>
                     <input type="submit" />
                 </form>

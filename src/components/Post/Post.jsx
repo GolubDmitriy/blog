@@ -6,7 +6,12 @@ import InstrumentBar from '../InstrumentBar/InstrumentBar';
 
 import './Post.css';
 
-const Post = ({ posts, id, loadingPosts  }) => {
+
+const Post = ({ posts, id, loadingPosts, errorLoadingPosts  }) => {
+
+    if ( errorLoadingPosts ) {
+        return null
+    }
 
     const post = posts.filter(post => Number(post.id) === Number(id))[0];
     
@@ -47,8 +52,8 @@ const Post = ({ posts, id, loadingPosts  }) => {
 }
 
 
-const mapStateToProps = ({ posts, loadingPosts }) => {
-    return  { posts, loadingPosts } 
+const mapStateToProps = ({ posts, loadingPosts, errorLoadingPosts }) => {
+    return  { posts, loadingPosts, errorLoadingPosts } 
 }
 
 export default connect(mapStateToProps)(Post);

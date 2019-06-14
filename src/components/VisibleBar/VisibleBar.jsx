@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { addNumberVisiblePosts, showAllPosts } from '../../actions/actions';
 
+import './VisibleBar.css'
+
 const VisibleBar = ({ numberVisiblePosts, addNumberVisiblePosts, showAllPosts, maxNumberVisible }) => {
     
     if ( numberVisiblePosts >= maxNumberVisible) {
@@ -10,7 +12,7 @@ const VisibleBar = ({ numberVisiblePosts, addNumberVisiblePosts, showAllPosts, m
     }
     
     return (
-        <div>
+        <div className="visible-bar d-flex justify-content-center">
             <button onClick={ addNumberVisiblePosts }>Показать следующие посты</button>
             <button onClick={ showAllPosts }>Показать все посты</button>
         </div>

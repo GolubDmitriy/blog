@@ -78,9 +78,9 @@ class NewPost extends React.Component {
                             className="form-control"
                             id="body-new-post"
                             rows="20" />
-                        { this.state.errorBody ? <p className="text-danger">Содержимое поста должна содержать хотя бы 4 символа.</p> : null }
+                        { this.state.errorBody ? <p className="text-danger">Содержимое поста должно содержать хотя бы 4 символа.</p> : null }
                     </div>
-                    <input type="submit" />
+                    <input type="submit" value="Отправить" />
                 </form>
             </div>
         )

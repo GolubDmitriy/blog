@@ -5,6 +5,7 @@ import ListItemPost from '../ListItemPost/ListItemPost';
 import SearchBar from '../SearchBar/SeacrhBar';
 import VisibleBar from '../VisibleBar/VisibleBar';
 import { searchPosts } from '../../actions/actions';
+import FilterBar from '../FilterBar/FilterBar';
 
 import './ListPosts.css';
 
@@ -85,7 +86,10 @@ const ListsPosts = ({
 
     return (
         <React.Fragment>
-            <SearchBar searchPosts={ searchPosts } />
+            <div className="d-flex justify-content-between">
+                <FilterBar />
+                <SearchBar searchPosts={ searchPosts } />
+            </div>
             <ul className="list-group">
                 { elements }
             </ul>

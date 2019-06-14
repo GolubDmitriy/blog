@@ -13,7 +13,7 @@ const ListItemPost = ({
     dislike }) => { 
 
     return (
-        <div className="card">
+        <div className="card shadow p-3 mb-5 bg-light rounded">
             <h3 className="card-header">
                 <Link to={"/post/" + idPost}>
                         { title }

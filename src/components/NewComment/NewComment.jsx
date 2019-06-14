@@ -51,7 +51,7 @@ class NewComment extends React.Component {
 
     render() {
         return (
-            <form onSubmit={ this.sendNewComments }>
+            <form onSubmit={ this.sendNewComments } className="border border-secondary">
                     <div className="form-group">
                         <label htmlFor="title-new-comments">Тема комментария</label>
                         <input 

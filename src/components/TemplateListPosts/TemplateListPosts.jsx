@@ -4,6 +4,8 @@ import VisibleBar from '../VisibleBar/VisibleBar';
 import FilterBar from '../FilterBar/FilterBar';
 import SearchBar from '../SearchBar/SeacrhBar';
 
+import './TemplateListPosts.css';
+
 const TemplateListPosts = ({ elements, resultPosts=[] }) => {
     return (
         <React.Fragment>
@@ -11,7 +13,7 @@ const TemplateListPosts = ({ elements, resultPosts=[] }) => {
                 <FilterBar />
                 <SearchBar />
             </div>
-            <ul className="list-group">
+            <ul className="list-group list-posts">
                 { elements }
             </ul>
             <VisibleBar maxNumberVisible={ resultPosts.length } />

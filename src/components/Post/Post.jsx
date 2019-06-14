@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import InstrumentBar from '../InstrumentBar/InstrumentBar';
+import NotFoundPost from '../NotFoundPost/NotFoundPost';
 
 import './Post.css';
 
@@ -41,7 +42,7 @@ const Post = ({ posts, id, loadingPosts, errorLoadingPosts  }) => {
     } 
 
     if (!loadingPosts && !post) {
-        return <h1>Поста нет...</h1>
+        return <NotFoundPost />
     }
 
     return (

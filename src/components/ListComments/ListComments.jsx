@@ -12,6 +12,7 @@ const ListComments = ({ comments, postId }) => {
         return (
             <li key={ comment.id } className="list-group-item" >
                 <Comment 
+                    idComment={ comment.id }
                     name={ comment.name }
                     email={ comment.email }
                     body={ comment.body }

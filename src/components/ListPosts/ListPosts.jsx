@@ -17,10 +17,19 @@ const ListsPosts = ({
         numberVisiblePosts,
         loadingPosts,
         isSeacrh,
-        foundPosts }) => {
+        foundPosts,
+        errorLoadingPosts }) => {
+
+    if ( errorLoadingPosts ) {
+        return null
+    }
 
     if ( loadingPosts ) {
-        return <h1>Loading...</h1>
+        return (
+            <div className="spinner-grow" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
+        )
     }
 
     let resultPosts = isSeacrh ? [...foundPosts] : [...posts]
@@ -102,7 +111,8 @@ const mapStateToProps = ({
         numberVisiblePosts,
         loadingPosts,
         isSeacrh,
-        foundPosts }) => {
+        foundPosts,
+        errorLoadingPosts }) => {
 
     return { 
         posts, 
@@ -115,7 +125,8 @@ const mapStateToProps = ({
         numberVisiblePosts,
         loadingPosts,
         isSeacrh,
-        foundPosts 
+        foundPosts,
+        errorLoadingPosts 
     }; 
 }
 

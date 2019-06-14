@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import BlockComments from '../BlockComments/BlockComments';
+import InstrumentBar from '../InstrumentBar/InstrumentBar';
 
 import './Post.css';
 
@@ -20,10 +20,17 @@ const Post = ({ posts, id, loadingPosts  }) => {
                     </p>
                     <hr className="my-2" />
                     <p className="lead">
-                        <Link to={"/edit-post/" + id} className="btn btn-primary">Редактировать</Link>
+                        <Link 
+                            to={"/edit-post/" + id} 
+                            className="btn btn-primary">
+                            Редактировать
+                        </Link>
                     </p>
+                    <InstrumentBar 
+                        idPost={ post.id } 
+                        like= { post.like } 
+                        dislike={ post.dislike } />
                 </div>
-                <BlockComments postId={ id } />
             </React.Fragment>
         )
     } 

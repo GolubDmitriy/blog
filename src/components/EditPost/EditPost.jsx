@@ -52,13 +52,15 @@ class EditPost extends React.Component {
 
     changeValueTitle = event => {
         this.setState({
-            valueTitle: event.target.value
+            valueTitle: event.target.value,
+            completEditPost: false
         })
     }
 
     changeValueBody = event => {
         this.setState({
-            valueBody: event.target.value
+            valueBody: event.target.value,
+            completEditPost: false
         })
     }
     
@@ -75,12 +77,11 @@ class EditPost extends React.Component {
             this.setState({
                 completEditPost: true
             })
-        } else {
-            this.setState({
-                errorTitle: this.state.valueTitle.length < 3 ? true : false,
-                errorBody: this.state.valueBody.length < 3 ? true : false
-            })
-        }
+        } 
+        this.setState({
+            errorTitle: this.state.valueTitle.length <= 3 ? true : false,
+            errorBody: this.state.valueBody.length <= 3 ? true : false
+        })
     }
 
     render() {
@@ -93,12 +94,15 @@ class EditPost extends React.Component {
             return (<h4>Упс, не удалось найти этот пост...</h4>)
         }
 
-        if ( this.state.completEditPost ) {
-            return (<h4>Пост успешно изменен.</h4>)
-        }
+        const success =  (
+                <div className="alert alert-success" role="alert">
+                    <strong>Успех!</strong> Пост изменен.
+                </div>
+            )
 
         const editPost = (
             <div>
+                { this.state.completEditPost ? success : null }
                 <form onSubmit={ this.sendEditPost }>
                     <div className="form-group">
                         <label htmlFor="title-new-post">Тема поста</label>
@@ -123,7 +127,7 @@ class EditPost extends React.Component {
                             rows="20" />
                         { this.state.errorBody ? <p className="text-danger">Содержимое поста должна содержать хотя бы 4 символа.</p> : null }
                     </div>
-                    <input type="submit" />
+                    <input type="submit" value="Изменить" />
                 </form>
             </div>
         )

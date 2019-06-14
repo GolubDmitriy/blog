@@ -14,7 +14,9 @@ const initialState = {
     lastIdComments: 0,
     statusFilterByTime: false,
     numberVisiblePosts: 10,
-    isSeacrh: false
+    isSeacrh: false,
+    errorLoadingPosts: false,
+    errorLoadingComments: false
 };
 
 const reducer = (state=initialState, action) => {
@@ -67,8 +69,6 @@ const reducer = (state=initialState, action) => {
                 })
             };
         case 'SET_LIKE':
-            // state.like[action.payload] = 1 
-            // return state;
             return {
                 ...state,
                 posts: state.posts.map(post => {
@@ -176,6 +176,16 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 isSeacrh: false
+            };
+        case 'SET_ERROR_LOADING_POSTS':
+            return {
+                ...state,
+                errorLoadingPosts: true
+            };
+        case 'SET_ERROR_LOADING_COMMENTS':
+            return {
+                ...state,
+                errorLoadingComments: true
             }
         default:
             return state;

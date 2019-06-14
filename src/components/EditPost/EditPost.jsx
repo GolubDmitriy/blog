@@ -120,13 +120,13 @@ class EditPost extends React.Component {
                     <div className="form-group">
                         <label htmlFor="body-new-post">Содержимое поста</label>
                         <textarea 
-                            type="text" 
+                            name="text" 
                             placeholder="Содержимое поста" 
-                            value={ this.state.valueBody }
+                            value={ this.state.valueBody.replace(/\n/g, ' ') }
                             onChange={ this.changeValueBody }
                             className="form-control"
                             id="body-new-post"
-                            rows="20" />
+                            rows="20" / >
                         { this.state.errorBody ? <p className="text-danger">Содержимое поста должна содержать хотя бы 4 символа.</p> : null }
                     </div>
                     <input type="submit" value="Изменить" />

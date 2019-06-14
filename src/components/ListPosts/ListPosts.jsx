@@ -5,6 +5,7 @@ import ListItemPost from '../ListItemPost/ListItemPost';
 import SearchBar from '../SearchBar/SeacrhBar';
 import VisibleBar from '../VisibleBar/VisibleBar';
 import FilterBar from '../FilterBar/FilterBar';
+import TemplateListPosts from '../TemplateListPosts/TemplateListPosts';
 
 import './ListPosts.css';
 
@@ -28,20 +29,26 @@ const ListsPosts = ({
     let resultPosts = isSeacrh ? [...foundPosts] : [...posts]
 
     if (isSeacrh && resultPosts.length === 0) {
-        return <h1>Постов с таким содержанием нет.</h1> 
+        return (
+            <TemplateListPosts elements={(<h3>Постов с таким содержанием нет.</h3>)} />
+        )
     }
 
     if ( statusFilterByLike ) {
         resultPosts = resultPosts.filter(post => post.like)
         if (resultPosts.length === 0) {
-            return <h1>Понравившихся Вам постов нет.</h1>
+            return (
+                <TemplateListPosts elements={(<h3>Понравившихся Вам постов нет.</h3>)} />
+            )
         }
     }
 
     if ( statusFilterByDislike ) {
         resultPosts = resultPosts.filter(post => post.dislike)
         if (resultPosts.length === 0) {
-            return <h1>Не понравившихся Вам постов нет.</h1>
+            return (
+                <TemplateListPosts elements={(<h3>Не понравившихся Вам постов нет.</h3>)} />
+            )
         }
     }
 
@@ -83,16 +90,7 @@ const ListsPosts = ({
     })
 
     return (
-        <React.Fragment>
-            <div className="d-flex justify-content-between">
-                <FilterBar />
-                <SearchBar />
-            </div>
-            <ul className="list-group">
-                { elements }
-            </ul>
-            <VisibleBar maxNumberVisible={ resultPosts.length } />
-        </React.Fragment>
+        <TemplateListPosts elements={ elements } resultPosts={ resultPosts } />
     )
 }
 

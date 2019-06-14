@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import ListItemPost from '../ListItemPost/ListItemPost';
 import SearchBar from '../SearchBar/SeacrhBar';
 import VisibleBar from '../VisibleBar/VisibleBar';
-import { searchPosts } from '../../actions/actions';
 import FilterBar from '../FilterBar/FilterBar';
 
 import './ListPosts.css';
@@ -13,7 +12,6 @@ const ListsPosts = ({
         posts, 
         statusFilterByAlphabet, 
         statusFilterByAlphabetReverse, 
-        searchPosts,
         statusFilterByLike,
         statusFilterByDislike,
         comments,
@@ -88,7 +86,7 @@ const ListsPosts = ({
         <React.Fragment>
             <div className="d-flex justify-content-between">
                 <FilterBar />
-                <SearchBar searchPosts={ searchPosts } />
+                <SearchBar />
             </div>
             <ul className="list-group">
                 { elements }
@@ -126,12 +124,4 @@ const mapStateToProps = ({
     }; 
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        searchPosts: textPosts => {
-            dispatch(searchPosts(textPosts))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ListsPosts);
+export default connect(mapStateToProps)(ListsPosts);

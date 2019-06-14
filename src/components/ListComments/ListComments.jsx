@@ -7,6 +7,14 @@ import Comment from '../Comment/Comment';
 const ListComments = ({ comments, postId }) => {
  
     const commentsByPost = comments.filter(comment => Number(comment.postId) === Number(postId));
+    
+    if ( commentsByPost.length === 0 ) {
+        return (
+            <div className="alert alert-dark" role="alert">
+                <strong>Комментариев к этому посту нет</strong> 
+            </div>
+        )
+    }
 
     const commentsList = commentsByPost.map(comment => {
         return (

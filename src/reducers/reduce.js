@@ -186,7 +186,12 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 errorLoadingComments: true
-            }
+            };
+        case 'DELETE_COMMENT':
+            return {
+                ...state,
+                comments: state.comments.filter(comment => Number(comment.id) !== Number(action.payload))
+            };
         default:
             return state;
     }

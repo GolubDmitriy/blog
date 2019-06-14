@@ -31,45 +31,35 @@ const FilterBar = ({ filterByAlphabet,
     }
 
     return (
-        <ul className="nav nav-pills">
-            <li>
-                <input 
-                    type="button" 
-                    value="Like" 
-                    onClick={ filterByLike } 
-                    className={statusFilterByLike ? "nav-item btn btn-info" : "nav-item btn btn-outline-info"}/>
-            </li>
-            <li>
-                <input 
-                    type="button" 
-                    value="Dislike" 
-                    onClick={ filterByDislike } 
-                    className={statusFilterByDislike ? "nav-item btn btn-info" : "nav-item btn btn-outline-info"}/>
-            </li>
-            <li>
-                <input 
-                    type="button" 
-                    value={ statusFilterByAlphabetReverse ? "По алфавиту Z-A" : "По алфавиту A-Z" } 
-                    onClick={ () => test(statusFilterByAlphabet) } 
-                    className={statusFilterByAlphabet ? "nav-item btn btn-info" : "nav-item btn btn-outline-info" }/>
-            </li>
-            <li>    
-                <button 
-                    type="button" 
-                    onClick={ filterByTime } 
-                    className="nav-item btn btn-outline-info">
-                    {statusFilterByTime ? "Cначала старые" : "Сначала новые"}
-                </button>
-            </li>
-            <li>
-                <button 
-                    type="button" 
-                    onClick={ resetAllFilter } 
-                    className="nav-item btn btn-outline-info">
-                    Сбросить
-                </button>
-            </li>
-        </ul>
+        <div className="btn-group">
+            <input 
+                type="button" 
+                value="Like" 
+                onClick={ filterByLike } 
+                className={statusFilterByLike ? "nav-item btn btn-info" : "nav-item btn btn-outline-info"}/>
+            <input 
+                type="button" 
+                value="Dislike" 
+                onClick={ filterByDislike } 
+                className={statusFilterByDislike ? "nav-item btn btn-info" : "nav-item btn btn-outline-info"}/>
+            <input 
+                type="button" 
+                value={ statusFilterByAlphabetReverse ? "По алфавиту Z-A" : "По алфавиту A-Z" } 
+                onClick={ () => test(statusFilterByAlphabet) } 
+                className={statusFilterByAlphabet ? "nav-item btn btn-info" : "nav-item btn btn-outline-info" }/>
+            <button 
+                type="button" 
+                onClick={ filterByTime } 
+                className="nav-item btn btn-outline-info">
+                {statusFilterByTime ? "Cначала старые" : "Сначала новые"}
+            </button>
+            <button 
+                type="button" 
+                onClick={ resetAllFilter } 
+                className="nav-item btn btn-outline-info">
+                Сбросить
+            </button>
+        </div>
     )
 }
 

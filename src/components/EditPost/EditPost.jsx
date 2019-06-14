@@ -11,7 +11,8 @@ class EditPost extends React.Component {
         valueBody: '',
         errorBody: false,
         errorTitle: false,
-        errorLoading: false
+        errorLoading: false,
+        completEditPost: false
     }
 
     componentDidMount() {
@@ -71,6 +72,9 @@ class EditPost extends React.Component {
                 userId: 1
             }
             this.props.editPost(newPost);
+            this.setState({
+                completEditPost: true
+            })
         } else {
             this.setState({
                 errorTitle: this.state.valueTitle.length < 3 ? true : false,
@@ -83,6 +87,10 @@ class EditPost extends React.Component {
 
         if ( this.state.errorLoading ) {
             return (<h4>Упс, не удалось найти этот пост...</h4>)
+        }
+
+        if ( this.state.completEditPost ) {
+            return (<h4>Пост успешно изменен.</h4>)
         }
 
         const editPost = (

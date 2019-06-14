@@ -72,7 +72,7 @@ class NewComment extends React.Component {
                             onChange={ this.changeNewCommentValue }
                             className="form-control"
                             id="body-new-comments" />
-                        { this.state.errorBody ? <p className="text-danger">Комментарий долен содержать хотя бы 4 символа.</p> : null }
+                        { this.state.errorBody ? <p className="text-danger">Комментарий должен содержать хотя бы 4 символа.</p> : null }
                     </div>
                     <input type="submit" value="Отправить" />
             </form>

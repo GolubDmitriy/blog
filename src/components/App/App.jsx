@@ -9,7 +9,8 @@ import ApiServices from '../../services/apiServices';
 import NewPost from '../NewPost/NewPost';
 import EditPost from '../EditPost/EditPost';
 import SearchPage from '../SearchPage/SearchPage';
-import { postsLoaded, commentsLoaded } from '../../actions/actions';
+import Error5xx from '../Error5xx/Error5xx';
+import { postsLoaded, commentsLoaded, setErrorLoadingComments, setErrorLoadingPosts } from '../../actions/actions';
 
 import './App.css';
 
@@ -23,7 +24,8 @@ class App extends React.Component {
                     this.props.postsLoaded(posts);
                 })
                 .catch(data => {
-                    console.log(data)
+                    console.log(data);
+                    this.props.setErrorLoadingPosts();
                 })
         }
         if (this.props.loadingComments) {
@@ -33,16 +35,19 @@ class App extends React.Component {
                     this.props.commentsLoaded(comments);
                 })
                 .catch(data => {
-                    console.log(data)
+                    console.log(data);
+                    this.props.setErrorLoadingComments();
                 })
         }
     }
 
     render() {
+
         return (
             <div className="main-page">
                 <Router>
-                <Header />
+                    <Header />
+                    { this.props.errorLoadingPosts ? <Error5xx /> : null }
                     <Route path="/posts" component={ ListPosts } />
                     <Route path="/post/:id" render={({match}) => {
                         return <Post id={match.params.id} />
@@ -52,14 +57,15 @@ class App extends React.Component {
                         return <EditPost id={match.params.id} />
                     }} />
                     <Route path="/search" component={ SearchPage } />
+                    
                 </Router>
             </div>
         )
     }
 }
 
-const mapStateToProps = ({ posts, loadingPosts, loadingComments, comments }) => {
-    return  { posts, loadingPosts, loadingComments, comments }; 
+const mapStateToProps = ({ posts, loadingPosts, loadingComments, comments, errorLoadingPosts }) => {
+    return  { posts, loadingPosts, loadingComments, comments, errorLoadingPosts }; 
 }
 
 const mapDispatchToProps = dispatch => {
@@ -69,6 +75,12 @@ const mapDispatchToProps = dispatch => {
         },
         commentsLoaded: comments => {
             dispatch(commentsLoaded(comments))
+        },
+        setErrorLoadingPosts: () => {
+            dispatch(setErrorLoadingPosts())
+        },
+        setErrorLoadingComments: () => {
+            dispatch(setErrorLoadingComments())
         }
     }
 }

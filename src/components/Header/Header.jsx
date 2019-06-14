@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { resetAllFilter, removeSearchStatus } from '../../actions/actions';
-import FilterBar from '../FilterBar/FilterBar';
 
 import './Header.css';
 
@@ -19,7 +18,6 @@ const Header = ({ resetAllFilter, removeSearchStatus }) => {
             <h1 className="nav-link">Header</h1>
             <Link to="/posts/" onClick={ reset } className="nav-link">Posts</Link>
             <Link to="/new-post" className="nav-link">New Post</Link>
-            <FilterBar />
         </nav>
     )
 }

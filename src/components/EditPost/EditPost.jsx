@@ -85,6 +85,10 @@ class EditPost extends React.Component {
 
     render() {
 
+        if ( this.props.errorLoadingPosts ) {
+            return null;
+        }
+
         if ( this.state.errorLoading ) {
             return (<h4>Упс, не удалось найти этот пост...</h4>)
         }
@@ -128,8 +132,8 @@ class EditPost extends React.Component {
     }
 };
 
-const mapStateToProps = ({ posts, loadingPosts }) => {
-    return { posts, loadingPosts }
+const mapStateToProps = ({ posts, loadingPosts, errorLoadingPosts }) => {
+    return { posts, loadingPosts, errorLoadingPosts }
 } 
 
 const mapDispatchToProps = dispatch => {

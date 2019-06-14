@@ -13,23 +13,21 @@ const ListItemPost = ({
     dislike }) => { 
 
     return (
-        <div className="post-mini">
-            <div className="post-mini-title">
-                <h3>
-                    <Link to={"/post/" + idPost}>
+        <div className="card">
+            <h3 className="card-header">
+                <Link to={"/post/" + idPost}>
                         { title }
-                    </Link>
-                </h3>
-            </div>
-            <div className="post-mini-body">
-                { text }
-            </div>
-            <InstrumentBar 
+                </Link>
+            </h3>
+            <div className="card-body">
+                <p className="card-text">{ text }</p>
+                <InstrumentBar 
                     idPost={ idPost } 
                     like= { like} 
                     dislike={ dislike } />
+            </div>
         </div>
-    ) 
+    )
 }
 
 export default ListItemPost;

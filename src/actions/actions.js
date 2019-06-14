@@ -140,6 +140,13 @@ const setErrorLoadingComments = () => {
     }
 }
 
+const deleteComment = idComment => {
+    return {
+        type: 'DELETE_COMMENT',
+        payload: idComment
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -162,5 +169,6 @@ export {
     showAllPosts,
     removeSearchStatus,
     setErrorLoadingPosts,
-    setErrorLoadingComments
+    setErrorLoadingComments,
+    deleteComment
 }

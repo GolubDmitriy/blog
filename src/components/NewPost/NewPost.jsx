@@ -29,8 +29,8 @@ class NewPost extends React.Component {
             })
         }
         this.setState({
-            errorTitle: this.state.valueTitle.length < 3 ? true : false,
-            errorBody: this.state.valueBody.length < 3 ? true : false
+            errorTitle: this.state.valueTitle.length <= 3 ? true : false,
+            errorBody: this.state.valueBody.length <= 3 ? true : false
         })
     }
 

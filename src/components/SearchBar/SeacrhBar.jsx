@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
+import { searchPosts } from '../../actions/actions';
+
 class SearchBar extends React.Component {
 
     state = {
@@ -35,4 +39,12 @@ class SearchBar extends React.Component {
     }
 }
 
-export default SearchBar;
+const mapDispatchToProps = dispatch => {
+    return {
+        searchPosts: textPosts => {
+            dispatch(searchPosts(textPosts))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SearchBar);

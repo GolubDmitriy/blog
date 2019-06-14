@@ -128,6 +128,18 @@ const removeSearchStatus = () => {
     }
 }
 
+const setErrorLoadingPosts = () => {
+    return {
+        type: 'SET_ERROR_LOADING_POSTS'
+    }
+}
+
+const setErrorLoadingComments = () => {
+    return {
+        type: 'SET_ERROR_LOADING_COMMENTS'
+    }
+}
+
 export {
     postsLoaded,
     deletePost,
@@ -148,5 +160,7 @@ export {
     resetAllFilter,
     addNumberVisiblePosts,
     showAllPosts,
-    removeSearchStatus
+    removeSearchStatus,
+    setErrorLoadingPosts,
+    setErrorLoadingComments
 }

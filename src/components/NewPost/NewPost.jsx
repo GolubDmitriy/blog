@@ -48,6 +48,14 @@ class NewPost extends React.Component {
     
     render() {
 
+        if ( this.props.errorLoadingPosts ) {
+            return null;
+        }
+
+        if ( this.props.loadingPosts ) {
+            return <h4>Loading...</h4>
+        }
+
         if ( this.state.statusSendNewPost ) {
             return (
                 <h3>Ваш пост успешно добавлен.</h3>
@@ -87,6 +95,10 @@ class NewPost extends React.Component {
     }
 }
 
+const mapStateToProps = ({ errorLoadingPosts, loadingPosts }) => {
+    return { errorLoadingPosts, loadingPosts }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         addNewPost: newPost => {
@@ -95,4 +107,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(NewPost);
+export default connect(mapStateToProps, mapDispatchToProps)(NewPost);

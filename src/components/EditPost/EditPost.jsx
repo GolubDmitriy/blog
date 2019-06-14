@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import NotFoundPost from '../NotFoundPost/NotFoundPost';
+
 import ApiServices from '../../services/apiServices';
 import { postsLoaded, editPost } from '../../actions/actions';
 
@@ -91,7 +93,7 @@ class EditPost extends React.Component {
         }
 
         if ( this.state.errorLoading ) {
-            return (<h4>Упс, не удалось найти этот пост...</h4>)
+            return <NotFoundPost />
         }
 
         const success =  (

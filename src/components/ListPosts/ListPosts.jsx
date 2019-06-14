@@ -2,9 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ListItemPost from '../ListItemPost/ListItemPost';
-import SearchBar from '../SearchBar/SeacrhBar';
-import VisibleBar from '../VisibleBar/VisibleBar';
-import FilterBar from '../FilterBar/FilterBar';
 import TemplateListPosts from '../TemplateListPosts/TemplateListPosts';
 
 import './ListPosts.css';

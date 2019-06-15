@@ -6,11 +6,13 @@ import ListComments from '../ListComments/ListComments';
 import NewComment from '../NewComment/NewComment';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
+import './BlockComments.css';
+
 const BlockComments = ({ postId, errorLoadingComments, loadingComments }) => {
     
     if ( errorLoadingComments ) {
         return (
-            <div className="alert alert-danger" role="alert">
+            <div className="alert alert-danger block-comments" role="alert">
                 <strong>Упс...</strong> Не можем подгрузить комментарии, попробуйте обновить страницу или зайти позже.
             </div>
         )

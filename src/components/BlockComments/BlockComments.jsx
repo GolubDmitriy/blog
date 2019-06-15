@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import ListComments from '../ListComments/ListComments';
 import NewComment from '../NewComment/NewComment';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const BlockComments = ({ postId, errorLoadingComments, loadingComments }) => {
     
@@ -16,11 +17,7 @@ const BlockComments = ({ postId, errorLoadingComments, loadingComments }) => {
     }
 
     if ( loadingComments ) {
-        return (
-            <div className="spinner-grow" role="status">
-                <span className="sr-only">Loading...</span>
-            </div>
-        )
+        return <LoadingSpinner />
     }
     
     return (

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import NotFoundPost from '../NotFoundPost/NotFoundPost';
 
-import ApiServices from '../../services/apiServices';
 import { postsLoaded, editPost } from '../../actions/actions';
 
 class EditPost extends React.Component {
@@ -18,39 +17,31 @@ class EditPost extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.loadingPosts) {
-            const apiServices = new ApiServices();
-            apiServices.getAllPosts()
-                .then(data => {
-                    this.props.postsLoaded(data);
-                    const post = this.props.posts.filter(post => Number(post.id) === Number(this.props.id))[0];
-                    try {
-                        this.setState({
-                            valueTitle: post.title,
-                            valueBody: post.body
-                        }) 
-                    }
-                    catch {
-                        this.setState({
-                            errorLoading: true
-                        })
-                    }
-                });
-        } else {
-            const post = this.props.posts.filter(post => Number(post.id) === Number(this.props.id))[0];
-            try {
+        if ( !this.props.loadingPosts ) {
+            this.changeState();
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if ( this.props.loadingPosts !== prevProps.loadingPosts ) {
+            this.changeState();
+        }
+    }
+
+    changeState = () => {
+        const post = this.props.posts.filter(post => Number(post.id) === Number(this.props.id))[0];
+            if( post ) {
                 this.setState({
                     valueTitle: post.title,
                     valueBody: post.body
-                }) 
-            }
-            catch {
+                })
+                
+            } else {
                 this.setState({
                     errorLoading: true
                 })
             }
-        }
-    } 
+    }
 
     changeValueTitle = event => {
         this.setState({
@@ -133,7 +124,7 @@ class EditPost extends React.Component {
                 </form>
             </div>
         )
-
+   
         return this.props.loadingPosts ? (<h1>Loading...</h1>) : editPost
     }
 };

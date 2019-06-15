@@ -7,10 +7,17 @@ import SearchBar from '../SearchBar/SeacrhBar';
 
 import './TemplateListPosts.css';
 
-const TemplateListPosts = ({ elements=null, resultPosts=[], searchQuery, foundPosts, isSeacrh }) => {
+const TemplateListPosts = ({ 
+        elements=null, 
+        resultPosts=[], 
+        searchQuery, 
+        foundPosts, 
+        isSeacrh, 
+        statusFilterByLike, 
+        statusFilterByDislike }) => {
     
     const searchMessageFound = (
-        <div class="alert alert-dark" role="alert">
+        <div class="alert alert-info" role="alert">
             По запросу <strong>{ searchQuery }</strong> найдено: { foundPosts.length } 
         </div>
     )
@@ -21,6 +28,34 @@ const TemplateListPosts = ({ elements=null, resultPosts=[], searchQuery, foundPo
         </div>
     )
 
+    const filterMessageLikeFound = (
+        <div class="alert alert-success" role="alert">
+            Вы поставили лайк постам: <strong>{ elements ? elements.length : null }</strong> 
+        </div>
+    )
+
+    const filterMessageLikeNotFound = (
+        <div class="alert alert-success" role="alert">
+            Постов, которым Вы поставили лайк нет
+        </div>
+    )
+
+    const filterMessageDislikeFound = (
+        <div class="alert alert-danger" role="alert">
+            Вы поставили дизлайк постам: <strong>{ elements ? elements.length : null }</strong> 
+        </div>
+    )
+
+    const filterMessageDislikeNotFound = (
+        <div class="alert alert-danger" role="alert">
+            Постов, которым Вы поставили дизлайк нет
+        </div>
+    )
+
+    const filterMessageLike = elements ? filterMessageLikeFound : filterMessageLikeNotFound
+
+    const filterMessageDislike = elements ? filterMessageDislikeFound : filterMessageDislikeNotFound
+
     const searchMessage = isSeacrh && foundPosts.length !== 0 ? searchMessageFound : searchMessageNotFound
     
     return (
@@ -30,6 +65,8 @@ const TemplateListPosts = ({ elements=null, resultPosts=[], searchQuery, foundPo
                 <SearchBar />
             </div>
             { searchQuery ? searchMessage : null }
+            { statusFilterByLike ? filterMessageLike : null }
+            { statusFilterByDislike ? filterMessageDislike : null }
             <ul className="list-group list-posts">
                 { elements }
             </ul>
@@ -38,8 +75,19 @@ const TemplateListPosts = ({ elements=null, resultPosts=[], searchQuery, foundPo
     )
 }
 
-const mapStateToProps = ({ foundPosts, searchQuery, isSeacrh }) => {
-    return { foundPosts, searchQuery, isSeacrh }
+const mapStateToProps = ({ 
+        foundPosts, 
+        searchQuery, 
+        isSeacrh, 
+        statusFilterByLike, 
+        statusFilterByDislike }) => {
+    return { 
+        foundPosts, 
+        searchQuery, 
+        isSeacrh, 
+        statusFilterByLike, 
+        statusFilterByDislike 
+    }
 }
 
 export default connect(mapStateToProps)(TemplateListPosts);

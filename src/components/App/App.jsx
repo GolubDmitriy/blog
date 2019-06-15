@@ -8,8 +8,8 @@ import Post from '../Post/Post';
 import ApiServices from '../../services/apiServices';
 import NewPost from '../NewPost/NewPost';
 import EditPost from '../EditPost/EditPost';
-import SearchPage from '../SearchPage/SearchPage';
 import Error5xx from '../Error5xx/Error5xx';
+
 import { postsLoaded, commentsLoaded, setErrorLoadingComments, setErrorLoadingPosts } from '../../actions/actions';
 
 import './App.css';
@@ -56,8 +56,6 @@ class App extends React.Component {
                     <Route path="/edit-post/:id" render={({match}) => {
                         return <EditPost id={match.params.id} />
                     }} />
-                    <Route path="/search" component={ SearchPage } />
-                    
                 </Router>
             </div>
         )

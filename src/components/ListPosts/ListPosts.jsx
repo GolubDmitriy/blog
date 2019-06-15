@@ -33,7 +33,7 @@ const ListsPosts = ({
 
     if (isSeacrh && resultPosts.length === 0) {
         return (
-            <TemplateListPosts elements={(<h3>Постов с таким содержанием нет.</h3>)} />
+            <TemplateListPosts />
         )
     }
 
@@ -41,7 +41,7 @@ const ListsPosts = ({
         resultPosts = resultPosts.filter(post => post.like)
         if (resultPosts.length === 0) {
             return (
-                <TemplateListPosts elements={(<h3>Понравившихся Вам постов нет.</h3>)} />
+                <TemplateListPosts />
             )
         }
     }
@@ -50,7 +50,7 @@ const ListsPosts = ({
         resultPosts = resultPosts.filter(post => post.dislike)
         if (resultPosts.length === 0) {
             return (
-                <TemplateListPosts elements={(<h3>Не понравившихся Вам постов нет.</h3>)} />
+                <TemplateListPosts />
             )
         }
     }
@@ -93,7 +93,9 @@ const ListsPosts = ({
     })
 
     return (
-        <TemplateListPosts elements={ elements } resultPosts={ resultPosts } />
+        <React.Fragment>
+            <TemplateListPosts elements={ elements } resultPosts={ resultPosts } />
+        </React.Fragment>
     )
 }
 

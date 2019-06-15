@@ -57,7 +57,7 @@ const FilterBar = ({ filterByAlphabet,
                 type="button" 
                 onClick={ resetAllFilter } 
                 className="nav-item btn btn-outline-info">
-                Сбросить
+                Снять все фильтры
             </button>
         </div>
     )

@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 
 import Comment from '../Comment/Comment';
 
+import './ListComments.css';
+
 const ListComments = ({ comments, postId }) => {
  
     const commentsByPost = comments.filter(comment => Number(comment.postId) === Number(postId));
     
     if ( commentsByPost.length === 0 ) {
         return (
-            <div className="alert alert-dark" role="alert">
+            <div className="alert alert-dark list-comments" role="alert">
                 <strong>Комментариев к этому посту нет</strong> 
             </div>
         )

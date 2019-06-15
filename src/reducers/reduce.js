@@ -15,6 +15,7 @@ const initialState = {
     statusFilterByTime: false,
     numberVisiblePosts: 10,
     isSeacrh: false,
+    searchQuery: '',
     errorLoadingPosts: false,
     errorLoadingComments: false
 };
@@ -98,7 +99,8 @@ const reducer = (state=initialState, action) => {
                     }
                     return false;
                 }),
-                isSeacrh: true
+                isSeacrh: true,
+                searchQuery: action.payload
             };
         case 'ADD_NEW_COMMENT':
             action.payload.id = state.lastIdComments + 1;
@@ -175,7 +177,8 @@ const reducer = (state=initialState, action) => {
         case 'REMOVE_SEARCH_STATUS':
             return {
                 ...state,
-                isSeacrh: false
+                isSeacrh: false,
+                searchQuery: ''
             };
         case 'SET_ERROR_LOADING_POSTS':
             return {

@@ -17,19 +17,5 @@ export default class ApiService {
     getAllComments() {
         return this.getResource('https://jsonplaceholder.typicode.com/comments');
     }
-
-    async getPostById(id) {
-        const posts = await this.getAllPosts()
-        for (let post in posts) {
-            if (posts[post].id == id) {
-                return posts[post]
-            }
-        }
-    }
-
-    async getCommentsByPostId(postId) {
-        const comments = await this.getAllComments();
-        return comments.filter(comment => comment.postId === Number(postId));
-    }
-
+    
 }

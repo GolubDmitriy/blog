@@ -14,7 +14,7 @@ class InstrumentBar extends React.Component {
     changeVisibleComments = () => {
         this.setState(prev => {
             return {
-                visibileComments: !prev.visibileComments
+                visibleComments: !prev.visibleComments
             }
         })
     }
@@ -31,8 +31,8 @@ class InstrumentBar extends React.Component {
             dislike
             } = this.props;
 
-        const blockComments = this.state.visibileComments ? <BlockComments postId={ idPost } /> : null
-
+        const blockComments = this.state.visibleComments ? <BlockComments postId={ idPost } /> : null
+        
         const commentsPost = comments.filter(comment => Number(idPost) === Number(comment.postId))
 
         return (
@@ -40,17 +40,17 @@ class InstrumentBar extends React.Component {
                 <div className="post-mini-menu-bar navbar">
                     <span 
                         onClick={() => setLike(idPost)} 
-                        className={ like ? "btn btn-success" : "btn btn-outline-success"}>
+                        className={ like ? "btn btn-success" : "btn btn-outline-success" }>
                         Like
                     </span>
                     <span 
                         onClick={() => setDislike(idPost)} 
-                        className={ dislike ? "btn btn-danger" : "btn btn-outline-danger"}>
+                        className={ dislike ? "btn btn-danger" : "btn btn-outline-danger" }>
                         Dislike
                     </span>
                     <button 
                         onClick={ this.changeVisibleComments }
-                        className="btn btn-outline-primary">
+                        className={ this.state.visibleComments ? "btn btn-primary" : "btn btn-outline-primary" }>
                         Comments { commentsPost.length }
                     </button>
                     <span 

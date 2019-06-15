@@ -18,10 +18,12 @@ class SearchBar extends React.Component {
 
     searchPost = event => {
         event.preventDefault();
-        this.props.searchPosts(this.state.searchValue);
-        this.setState({
-            searchValue: '',
-        });
+        if ( this.state.searchValue.length !== 0 ) {
+            this.props.searchPosts(this.state.searchValue);
+            this.setState({
+                searchValue: '',
+            });
+        }
     }
 
     render() {

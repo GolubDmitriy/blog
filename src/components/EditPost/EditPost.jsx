@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import NotFoundPost from '../NotFoundPost/NotFoundPost';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 import { postsLoaded, editPost } from '../../actions/actions';
 
@@ -125,7 +126,7 @@ class EditPost extends React.Component {
             </div>
         )
    
-        return this.props.loadingPosts ? (<h1>Loading...</h1>) : editPost
+        return this.props.loadingPosts ? <LoadingSpinner /> : editPost
     }
 };
 

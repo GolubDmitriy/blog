@@ -30,7 +30,7 @@ const TemplateListPosts = ({
 
     const filterMessageLikeFound = (
         <div className="alert alert-success" role="alert">
-            Вы поставили лайк постам: <strong>{ elements ? elements.length : null }</strong> 
+            Вы поставили лайк постам: <strong>{ resultPosts.length !== 0 ? resultPosts.length : null }</strong> 
         </div>
     )
 
@@ -42,7 +42,7 @@ const TemplateListPosts = ({
 
     const filterMessageDislikeFound = (
         <div className="alert alert-danger" role="alert">
-            Вы поставили дизлайк постам: <strong>{ elements ? elements.length : null }</strong> 
+            Вы поставили дизлайк постам: <strong>{ resultPosts.length !== 0 ? resultPosts.length : null }</strong> 
         </div>
     )
 

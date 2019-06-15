@@ -5,6 +5,8 @@ import VisibleBar from '../VisibleBar/VisibleBar';
 import FilterBar from '../FilterBar/FilterBar';
 import SearchBar from '../SearchBar/SeacrhBar';
 
+import { removeSearchStatus } from '../../actions/actions';
+ 
 import './TemplateListPosts.css';
 
 const TemplateListPosts = ({ 
@@ -14,7 +16,8 @@ const TemplateListPosts = ({
         foundPosts, 
         isSeacrh, 
         statusFilterByLike, 
-        statusFilterByDislike }) => {
+        statusFilterByDislike,
+        removeSearchStatus }) => {
     
     const searchMessageFound = (
         <div className="alert alert-info" role="alert">
@@ -52,6 +55,12 @@ const TemplateListPosts = ({
         </div>
     )
 
+    const messageRemoveSearchStatus = (
+        <div className="alert alert-warning" role="alert" onClick={ removeSearchStatus }>
+            Для отмены режима поиска щелкните по этому сообщению
+        </div>
+    )
+
     const filterMessageLike = elements ? filterMessageLikeFound : filterMessageLikeNotFound
 
     const filterMessageDislike = elements ? filterMessageDislikeFound : filterMessageDislikeNotFound
@@ -67,6 +76,7 @@ const TemplateListPosts = ({
             { searchQuery ? searchMessage : null }
             { statusFilterByLike ? filterMessageLike : null }
             { statusFilterByDislike ? filterMessageDislike : null }
+            { isSeacrh ? messageRemoveSearchStatus : null }
             <ul className="list-group list-posts">
                 { elements }
             </ul>
@@ -90,4 +100,12 @@ const mapStateToProps = ({
     }
 }
 
-export default connect(mapStateToProps)(TemplateListPosts);
+const mapDispatchToProps = dispatch => {
+    return {
+        removeSearchStatus: () => {
+            dispatch(removeSearchStatus())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TemplateListPosts);

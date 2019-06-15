@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+
 import { addNewPost } from '../../actions/actions';
 
 class NewPost extends React.Component {
@@ -53,7 +55,7 @@ class NewPost extends React.Component {
         }
 
         if ( this.props.loadingPosts ) {
-            return <h4>Loading...</h4>
+            return <LoadingSpinner />
         }
 
         if ( this.state.statusSendNewPost ) {

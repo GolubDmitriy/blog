@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import InstrumentBar from '../InstrumentBar/InstrumentBar';
 import NotFoundPost from '../NotFoundPost/NotFoundPost';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'; 
 
 import './Post.css';
 
@@ -45,11 +46,7 @@ const Post = ({ posts, id, loadingPosts, errorLoadingPosts  }) => {
         return <NotFoundPost />
     }
 
-    return (
-        <div className="spinner-grow spinner-grow-sm" role="status">
-            <span className="sr-only">Loading...</span>
-        </div>
-    )
+    return <LoadingSpinner />
 }
 
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import ListItemPost from '../ListItemPost/ListItemPost';
 import TemplateListPosts from '../TemplateListPosts/TemplateListPosts';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 import './ListPosts.css';
 
@@ -25,11 +26,7 @@ const ListsPosts = ({
     }
 
     if ( loadingPosts ) {
-        return (
-            <div className="spinner-grow" role="status">
-                <span className="sr-only">Loading...</span>
-            </div>
-        )
+        return <LoadingSpinner />
     }
 
     let resultPosts = isSeacrh ? [...foundPosts] : [...posts]

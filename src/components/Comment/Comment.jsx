@@ -7,7 +7,7 @@ import { deleteComment } from '../../actions/actions';
 const Comment = ({ email, name, body, deleteComment, idComment }) => {
     return (
         <div>
-            <h5 className="mb-1 text-center">{ name }</h5>
+            <h5 className="mb-1 text-center card-header">{ name }</h5>
             <hr />
             <p className="mb-1">{ body }</p>
             <p className="blockquote-footer">

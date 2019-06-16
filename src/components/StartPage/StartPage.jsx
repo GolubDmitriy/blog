@@ -11,8 +11,8 @@ const StartPage = () => {
                 Вы можете просматривать посты других пользоватлей, так и писать свои,
                 оценивать их и оставлять свои комментарии.
                 </p>
-                <Link to="/posts/" className="card-link">Читать посты</Link>
-                <Link to="/new-post" className="card-link">Создать свой пост</Link>
+                <Link to="/posts/" className="card-link text-info">Читать посты</Link>
+                <Link to="/new-post" className="card-link text-info">Создать свой пост</Link>
             </div>
         </div>
     )

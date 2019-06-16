@@ -13,8 +13,16 @@ const VisibleBar = ({ numberVisiblePosts, addNumberVisiblePosts, showAllPosts, m
     
     return (
         <div className="visible-bar d-flex justify-content-center">
-            <button onClick={ addNumberVisiblePosts }>Показать следующие посты</button>
-            <button onClick={ showAllPosts }>Показать все посты</button>
+            <button 
+                onClick={ addNumberVisiblePosts } 
+                className="btn btn-outline-info visible-bar-btn">
+                    Показать следующие посты
+            </button>
+            <button 
+                onClick={ showAllPosts }
+                className="btn btn-outline-info">
+                    Показать все посты
+            </button>
         </div>
     )
 }

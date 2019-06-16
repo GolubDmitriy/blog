@@ -8,8 +8,11 @@ const Comment = ({ email, name, body, deleteComment, idComment }) => {
     return (
         <div>
             <h5 className="mb-1 text-center">{ name }</h5>
-            <p>{ email }</p>
+            <hr />
             <p className="mb-1">{ body }</p>
+            <p className="blockquote-footer">
+                Комментарий оставил <cite title={ email }>{ email }</cite>
+            </p>
             <span 
                 onClick={() => deleteComment(idComment)}
                 className="btn btn-outline-dark">

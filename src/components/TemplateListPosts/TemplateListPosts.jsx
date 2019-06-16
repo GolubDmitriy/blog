@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import VisibleBar from '../VisibleBar/VisibleBar';
 import FilterBar from '../FilterBar/FilterBar';
 import SearchBar from '../SearchBar/SeacrhBar';
+import StatusMessageFilter from '../StatusMessageFilter/StatusMessageFilter';
 
 import { removeSearchStatus } from '../../actions/actions';
  
@@ -18,65 +19,22 @@ const TemplateListPosts = ({
         statusFilterByLike, 
         statusFilterByDislike,
         removeSearchStatus }) => {
-    
-    const searchMessageFound = (
-        <div className="alert alert-info" role="alert">
-            По запросу <strong>{ searchQuery }</strong> найдено: { foundPosts.length } 
-        </div>
-    )
 
-    const searchMessageNotFound = (
-        <div className="alert alert-dark" role="alert">
-            По запросу <strong>{ searchQuery }</strong> ничего не найдено
-        </div>
-    )
-
-    const filterMessageLikeFound = (
-        <div className="alert alert-success" role="alert">
-            Вы поставили лайк постам: <strong>{ resultPosts.length !== 0 ? resultPosts.length : null }</strong> 
-        </div>
-    )
-
-    const filterMessageLikeNotFound = (
-        <div className="alert alert-success" role="alert">
-            Постов, которым Вы поставили лайк нет
-        </div>
-    )
-
-    const filterMessageDislikeFound = (
-        <div className="alert alert-danger" role="alert">
-            Вы поставили дизлайк постам: <strong>{ resultPosts.length !== 0 ? resultPosts.length : null }</strong> 
-        </div>
-    )
-
-    const filterMessageDislikeNotFound = (
-        <div className="alert alert-danger" role="alert">
-            Постов, которым Вы поставили дизлайк нет
-        </div>
-    )
-
-    const messageRemoveSearchStatus = (
-        <div className="alert alert-warning" role="alert" onClick={ removeSearchStatus }>
-            Для отмены режима поиска щелкните по этому сообщению
-        </div>
-    )
-
-    const filterMessageLike = elements ? filterMessageLikeFound : filterMessageLikeNotFound
-
-    const filterMessageDislike = elements ? filterMessageDislikeFound : filterMessageDislikeNotFound
-
-    const searchMessage = isSeacrh && foundPosts.length !== 0 ? searchMessageFound : searchMessageNotFound
-    
     return (
         <React.Fragment>
             <div className="d-flex justify-content-between template-list-posts">
                 <FilterBar />
                 <SearchBar />
             </div>
-            { searchQuery ? searchMessage : null }
-            { statusFilterByLike ? filterMessageLike : null }
-            { statusFilterByDislike ? filterMessageDislike : null }
-            { isSeacrh ? messageRemoveSearchStatus : null }
+            <StatusMessageFilter
+                searchQuery={ searchQuery }
+                foundPosts={ foundPosts }
+                resultPosts={ resultPosts }
+                removeSearchStatus={ removeSearchStatus }
+                elements={ elements }
+                isSeacrh={ isSeacrh }
+                statusFilterByLike={ statusFilterByLike }
+                statusFilterByDislike={ statusFilterByDislike } />
             <ul className="list-group list-posts">
                 { elements }
             </ul>

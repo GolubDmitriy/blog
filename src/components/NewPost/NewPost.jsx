@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
@@ -60,7 +61,11 @@ class NewPost extends React.Component {
 
         if ( this.state.statusSendNewPost ) {
             return (
-                <h3>Ваш пост успешно добавлен.</h3>
+                <div className="alert alert-success" role="alert">
+                    <Link to="/posts/" className="nav-link">
+                        Ваш пост добавлен. Перейти на страницу с потостами.
+                    </Link>
+                </div>
             )
         }
 

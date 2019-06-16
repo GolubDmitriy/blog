@@ -51,31 +51,36 @@ class NewComment extends React.Component {
 
     render() {
         return (
-            <form onSubmit={ this.sendNewComments } className="border border-secondary">
-                    <div className="form-group">
-                        <label htmlFor="title-new-comments">Тема комментария</label>
-                        <input 
-                            type="text" 
-                            placeholder="Тема комментария" 
-                            value={ this.state.newCommentTitle }
-                            onChange={ this.changeNewCommentTitle }
-                            className="form-control"
-                            id="title-new-comments" />
-                        { this.state.errorTitle ? <p className="text-danger">Тема комментария должна содержать хотя бы 4 символа.</p> : null }                        
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="body-new-comments">Содержимое поста</label>
-                        <textarea 
-                            type="text" 
-                            placeholder="Комментарий" 
-                            value={ this.state.newCommentValue }
-                            onChange={ this.changeNewCommentValue }
-                            className="form-control"
-                            id="body-new-comments" />
-                        { this.state.errorBody ? <p className="text-danger">Комментарий должен содержать хотя бы 4 символа.</p> : null }
-                    </div>
-                    <input type="submit" value="Отправить" className="btn btn-outline-info" />
-            </form>
+            <div className="card">
+                <h5 className="card-header">Оставьте Ваш комментарий</h5>
+                <div className="card-body">
+                    <form onSubmit={ this.sendNewComments }>
+                            <div className="form-group">
+                                <label htmlFor="title-new-comments">Тема комментария</label>
+                                <input 
+                                    type="text" 
+                                    placeholder="Тема комментария" 
+                                    value={ this.state.newCommentTitle }
+                                    onChange={ this.changeNewCommentTitle }
+                                    className="form-control"
+                                    id="title-new-comments" />
+                                { this.state.errorTitle ? <p className="text-danger">Тема комментария должна содержать хотя бы 4 символа.</p> : null }                        
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="body-new-comments">Комментарий</label>
+                                <textarea 
+                                    type="text" 
+                                    placeholder="Комментарий" 
+                                    value={ this.state.newCommentValue }
+                                    onChange={ this.changeNewCommentValue }
+                                    className="form-control"
+                                    id="body-new-comments" />
+                                { this.state.errorBody ? <p className="text-danger">Комментарий должен содержать хотя бы 4 символа.</p> : null }
+                            </div>
+                            <input type="submit" value="Отправить" className="btn btn-outline-info" />
+                    </form>
+                </div>
+            </div>
         )
     }
 

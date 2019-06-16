@@ -2,3 +2,7 @@
     width: 1000px;
     margin: 0 auto;
 }
+
+.btn:focus {
+    box-shadow: none !important;
+}

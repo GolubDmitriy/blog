@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { addNewComment } from '../../actions/actions';
 
+import './NewComment.css'
+
 class NewComment extends React.Component {
 
     state = {
@@ -51,7 +53,7 @@ class NewComment extends React.Component {
 
     render() {
         return (
-            <div className="card">
+            <div className="card new-comments">
                 <h5 className="card-header">Оставьте Ваш комментарий</h5>
                 <div className="card-body">
                     <form onSubmit={ this.sendNewComments }>

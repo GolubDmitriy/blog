@@ -33,7 +33,7 @@ const ListComments = ({ comments, postId }) => {
 
     return (
         <React.Fragment>
-            <h4 className="mb-1 list-comments">Комментарии к посту:</h4>
+            <h4 className="mb-2 list-comments">Комментарии к посту:</h4>
             <ul className="list-group" >
                 { commentsList }
             </ul>

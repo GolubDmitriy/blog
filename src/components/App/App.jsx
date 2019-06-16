@@ -10,6 +10,7 @@ import NewPost from '../NewPost/NewPost';
 import EditPost from '../EditPost/EditPost';
 import Error5xx from '../Error5xx/Error5xx';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import StartPage from '../StartPage/StartPage';
 
 import { postsLoaded, commentsLoaded, setErrorLoadingComments, setErrorLoadingPosts } from '../../actions/actions';
 
@@ -50,6 +51,7 @@ class App extends React.Component {
                     <Header />
                     { this.props.errorLoadingPosts ? <Error5xx /> : null }
                     <Switch>
+                        <Route exact path="/" component={ StartPage } />
                         <Route path="/posts" component={ ListPosts } />
                         <Route path="/post/:id" render={({match}) => {
                             return <Post id={match.params.id} />

@@ -74,7 +74,7 @@ class NewComment extends React.Component {
                             id="body-new-comments" />
                         { this.state.errorBody ? <p className="text-danger">Комментарий должен содержать хотя бы 4 символа.</p> : null }
                     </div>
-                    <input type="submit" value="Отправить" />
+                    <input type="submit" value="Отправить" className="btn btn-outline-info" />
             </form>
         )
     }

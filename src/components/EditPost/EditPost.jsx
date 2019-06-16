@@ -121,7 +121,7 @@ class EditPost extends React.Component {
                             rows="20" />
                         { this.state.errorBody ? <p className="text-danger">Содержимое поста должна содержать хотя бы 4 символа.</p> : null }
                     </div>
-                    <input type="submit" value="Изменить" />
+                    <input type="submit" value="Изменить" className="btn btn-outline-info" />
                 </form>
             </div>
         )

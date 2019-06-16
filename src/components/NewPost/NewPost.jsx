@@ -92,7 +92,7 @@ class NewPost extends React.Component {
                             onChange={ this.changeValueBody }
                             className="form-control"
                             id="body-new-post"
-                            rows="20" />
+                            rows="10" />
                         { this.state.errorBody ? <p className="text-danger">Содержимое поста должно содержать хотя бы 4 символа.</p> : null }
                     </div>
                     <input type="submit" value="Отправить" className="btn btn-outline-info" />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import Header from '../Header/Header';
 import ListPosts from '../ListPosts/ListPosts';
@@ -9,6 +9,7 @@ import ApiServices from '../../services/apiServices';
 import NewPost from '../NewPost/NewPost';
 import EditPost from '../EditPost/EditPost';
 import Error5xx from '../Error5xx/Error5xx';
+import PageNotFound from '../PageNotFound/PageNotFound';
 
 import { postsLoaded, commentsLoaded, setErrorLoadingComments, setErrorLoadingPosts } from '../../actions/actions';
 
@@ -48,14 +49,17 @@ class App extends React.Component {
                 <Router>
                     <Header />
                     { this.props.errorLoadingPosts ? <Error5xx /> : null }
-                    <Route path="/posts" component={ ListPosts } />
-                    <Route path="/post/:id" render={({match}) => {
-                        return <Post id={match.params.id} />
-                    }} />
-                    <Route path="/new-post" component={ NewPost } />
-                    <Route path="/edit-post/:id" render={({match}) => {
-                        return <EditPost id={match.params.id} />
-                    }} />
+                    <Switch>
+                        <Route path="/posts" component={ ListPosts } />
+                        <Route path="/post/:id" render={({match}) => {
+                            return <Post id={match.params.id} />
+                        }} />
+                        <Route path="/new-post" component={ NewPost } />
+                        <Route path="/edit-post/:id" render={({match}) => {
+                            return <EditPost id={match.params.id} />
+                        }} />
+                        <Route component={ PageNotFound } />
+                    </Switch>
                 </Router>
             </div>
         )

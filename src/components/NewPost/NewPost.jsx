@@ -62,8 +62,8 @@ class NewPost extends React.Component {
         if ( this.state.statusSendNewPost ) {
             return (
                 <div className="alert alert-success" role="alert">
-                    <Link to="/posts/" className="nav-link">
-                        Ваш пост добавлен. Перейти на страницу с потостами.
+                    <Link to="/posts/" className="nav-link text-success">
+                        Ваш пост добавлен. Перейти на страницу с постами.
                     </Link>
                 </div>
             )

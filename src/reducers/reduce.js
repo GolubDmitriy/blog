@@ -12,7 +12,7 @@ const initialState = {
     statusFilterByLike: false,
     statusFilterByDislike: false,
     lastIdComments: 0,
-    statusFilterByTime: false,
+    statusFilterByTime: true,
     numberVisiblePosts: 10,
     isSeacrh: false,
     searchQuery: '',
@@ -162,7 +162,7 @@ const reducer = (state=initialState, action) => {
                 statusFilterByAlphabetReverse: false,
                 statusFilterByLike: false,
                 statusFilterByDislike: false,
-                statusFilterByTime: false
+                statusFilterByTime: true
             };
         case 'ADD_NUMBER_VISIBLE_POSTS':
             return {

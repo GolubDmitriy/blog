@@ -1,6 +1,5 @@
 export const initialState = {
     posts: [],
-    post: {},
     comments: [],
     like: {},
     loadingPosts: true,
@@ -37,11 +36,6 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 posts: state.posts.filter(post => Number(post.id) !== Number(action.payload)),
                 foundPosts: state.foundPosts.filter(post => Number(post.id) !== Number(action.payload))
-            };
-        case 'POST_LOADED':
-            return {
-                ...state,
-                post: action.payload
             };
         case 'COMMENTS_LOADED':
             return {

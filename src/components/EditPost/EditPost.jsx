@@ -14,7 +14,8 @@ class EditPost extends React.Component {
         errorBody: false,
         errorTitle: false,
         errorLoading: false,
-        completEditPost: false
+        completEditPost: false,
+        disabledBtn: true
     }
 
     componentDidMount() {
@@ -47,14 +48,16 @@ class EditPost extends React.Component {
     changeValueTitle = event => {
         this.setState({
             valueTitle: event.target.value,
-            completEditPost: false
+            completEditPost: false,
+            disabledBtn: false
         })
     }
 
     changeValueBody = event => {
         this.setState({
             valueBody: event.target.value,
-            completEditPost: false
+            completEditPost: false,
+            disabledBtn: false
         })
     }
     
@@ -69,7 +72,8 @@ class EditPost extends React.Component {
             }
             this.props.editPost(newPost);
             this.setState({
-                completEditPost: true
+                completEditPost: true,
+                disabledBtn: true
             })
         } 
         this.setState({
@@ -97,7 +101,7 @@ class EditPost extends React.Component {
         const editPost = (
             <div>
                 { this.state.completEditPost ? success : null }
-                <form onSubmit={ this.sendEditPost }>
+                <form onSubmit={ this.state.disabledBtn ? (event) => event.preventDefault() : this.sendEditPost }>
                     <div className="form-group">
                         <label htmlFor="title-new-post">Тема поста</label>
                         <input 
@@ -121,7 +125,10 @@ class EditPost extends React.Component {
                             rows="10" />
                         { this.state.errorBody ? <p className="text-danger">Содержимое поста должна содержать хотя бы 4 символа.</p> : null }
                     </div>
-                    <input type="submit" value="Изменить" className="btn btn-outline-info" />
+                    <input 
+                        type="submit" 
+                        value="Изменить" 
+                        className={ this.state.disabledBtn ? "btn btn-outline-info disabled" : "btn btn-info" } />
                 </form>
             </div>
         )
